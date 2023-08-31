@@ -31,7 +31,7 @@ export default function Card({ user, pagetype }: Props) {
         </div>
     ) : null
     
-    //-IF USER HAS PROFILE PICTURE
+    //-IF USER HAS PROFILE PICTURE - from Oauth
     const userImage = user?.image ? (
         <Image
             className="border-4 border-black dark:border-slate-500 drop-shadow-xl shadow-black rounded-full mx-auto mt-8"
@@ -45,7 +45,7 @@ export default function Card({ user, pagetype }: Props) {
 
     return (
         <section className="flex flex-col gap-4">
-            <p className="text-2xl text-center">This is the {pagetype} Page!</p>
+            <p className="text-2xl text-center">This is a {pagetype} Side Rendered Page!</p>
             {greeting}
             {userImage}
         </section>

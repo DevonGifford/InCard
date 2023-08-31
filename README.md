@@ -139,7 +139,7 @@ incard
 ##### STRETCH FEATURES: 
 <hr>
 
-✅ Fully supporta SSR
+✅ Supports both SSR & CSR
 
 ✅ Session should be persistent <em>(page reload should not result in login page)</em>
 
@@ -156,7 +156,7 @@ incard
 
 ✅ Interactive NavBar with Hamburger menu
 
-✅ Protected Server and Client side page's for testing  
+✅ Protected & Un-protected Server/Client side page's for testing  
 
 <br/>
 
