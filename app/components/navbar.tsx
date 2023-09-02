@@ -2,22 +2,18 @@
 
 import Link from "next/link"
 import React, { useRef, useState } from "react";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 import { MdOutlineClose } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi" 
 
-import NavBarSession from "./navbarsession";
-import { signIn, signOut, useSession } from "next-auth/react";
-
 export default function Navbar() {
+    //  ✅ Handle opening and Closing of SideBar
     const [showMenu, setShowMenu] = useState(false);
-    const ref = useRef<string | any>("")
+    const ref = useRef<string | any>("");
+    function handleMenu (e:any) { setShowMenu(false) };
 
-
-    function handleMenu (e:any) {
-      setShowMenu(false)
-    }
-
+    // ✅ Get Session data for conditional signIn/signOut button
     const { data: session } = useSession({
       required: false
     })
@@ -41,7 +37,7 @@ export default function Navbar() {
                       onClick={() => setShowMenu(false)}
                       className="text-3xl text-textGreen cursor-pointer hover:scale-125 absolute top-8 right-8"
                     />
-                    {/* LIST OF PAGES */}
+                    {/* LIST OF ROUTES */}
                     <ul className="flex flex-col font-semibold text-3xl gap-12 md:gap-24 items-left md:pt-32">
                         <li className="transition ease-in-out duration-150 hover:scale-110 hover:-translate-y-1"><Link href="/">Home</Link></li>
                         <li className="transition ease-in-out duration-150 hover:scale-110 hover:-translate-y-1"><Link href="/an-extra-page-example">Bonus Page</Link></li>
@@ -52,15 +48,10 @@ export default function Navbar() {
               </div>
             )}
             {/* CONDITIONAL SIGN-IN & SIGN-OUT BUTTONS */}
-            {/* <NavBarSession /> */}
             {session? (
-                <>
                 <button className=" font-semibold text-2xl " onClick={() => signOut()}>Sign Out</button>
-                </>
               ):(
-                <>
                 <button className=" font-semibold text-2xl " onClick={() => signIn()}>Sign In</button>
-                </>
             )}
         </nav>
     )

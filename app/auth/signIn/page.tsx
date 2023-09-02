@@ -6,6 +6,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
+import Link from "next/link";
 
 const SignUpSchema = z.object({
   username: z
@@ -26,13 +27,13 @@ const LoginPage = () => {
   //🤔 Inital approach was to use searchParams with callback url - but this requried reloading the page 
   //✖ const searchParams = useSearchParams();
   //✖ const signInError = searchParams.get('error') ? 'task failed successfully' : ''
-  //✅ Opted to instead handle the callbacks myself - simpler for notifications
+  //✅ Opted to instead handle the callbacks myself - simpler to manage notifications 
   const searhParams = useSearchParams();
   const callbackUrl = searhParams.get('callbackUrl') || '/'
   const router = useRouter();
   const [error, setError] = useState('');
   
-  //✅ Handle form submission - help cut api calls
+  //✅ Handle form submission - helping cut wasted api calls
   const {
     register,
     handleSubmit,
@@ -43,14 +44,11 @@ const LoginPage = () => {
     reValidateMode: "onChange",
     shouldFocusError: true
   });
-
   
-  
-  //✅ Handle Submit - managing callback URL myself
+  //✅ Handle Submit - managing the callback URL
   const onSubmit: SubmitHandler<SignUpSchemaType> = async (data) => {
-    console.log('username entered:  ', data.username)
-    console.log('password entered: ', data.password);
-    
+    //✖ console.log('username entered:  ', data.username);
+    //✖ console.log('password entered: ', data.password);
     try {
       const result = await signIn("credentials", {
         username: data.username,
@@ -60,9 +58,10 @@ const LoginPage = () => {
       });
       if (!result?.error){
         //🎯 hot-toast-error message - success
-        console.log('success')
+        console.log('successfully signed in')
         router.push("/")
       } else {
+        console.log("failed to login with given credentials")
         //🎯hot-toast-error message - wrong username or password
         //error message for form
         setError("task failed successfully")
@@ -71,21 +70,17 @@ const LoginPage = () => {
       //🎯hot-toast-error message - something went wrong 
       console.log(err)
     }
- 
-}
+  }
 
   return (
     <div className="flex flex-col justify-center items-center h-screen bg-black gap-1">
-
       <div className="sm:w-2/3 max-w-2xl -translate-y-10 h-fit px-10 py-5 rounded-2xl shadow-xl shadow-gray-900 bg-red border-2 border-orange-600 bg-gray-900 flex flex-col gap-5 text-center">
-
         {/* HEADER */}
         <div className="flex flex-col">
           <span className="text-center font-bold tracking-widest text-xl md:text-3xl py-2 pb-5 mb-3 border-b-2 border-orange-600">Please Sign In</span >
           {/* <span className="text-red-700 text-sm">{signInError}</span>  //INITIAL APPROACH */}
           <span className="text-red-700 text-sm">{error}</span>
         </div>
-
         {/* FORM */}
         <form  onSubmit={handleSubmit(onSubmit)} className="form flex flex-col justify-center items-center">
           <input 
@@ -105,16 +100,16 @@ const LoginPage = () => {
             type="submit" 
             className="text-lg tracking-wider p-2 mt-6 md:mt-8 px-4 bg-gray-700 font-semi-bold text-orange-500 border-2 border-orange-600"
           >
+            {/* 🎯 creating spinning animation <span className="hover:animate-spin h-5 w-5 mr-3">x</span> */}
             Login
           </button>
         </form>
-
-      {/* FOOTER 🎯 add links */}
-      <span className="pt-5 lg:pt-7 font-light"> Back to Home Page </span>
-      <div className="flex flex-col gap-2 md:flex-row justify-evenly pt-1">
-        <span className="text-sm font-extralight">Forgot your password?</span>
-        <span className="text-sm font-extralight">Create a new account?</span>
-      </div>
+        {/* FOOTER */}
+        <Link href='/'><span className="pt-5 lg:pt-20 font-light hover:font-medium"> Back to Home Page </span></Link>
+        <div className="flex flex-col gap-2  md:flex-row justify-evenly pt-1">
+          <Link href='/an-extra-page-example'><span className="text-sm font-extralight hover:font-light">Forgot your password?</span></Link>
+          <Link href='/an-extra-page-example'><span className="text-sm font-extralight hover:font-light">Create a new account?</span></Link>
+        </div>
 
       </div>
     </div>
