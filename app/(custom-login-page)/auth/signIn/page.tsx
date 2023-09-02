@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
+import { toast } from "react-hot-toast";
 
 const SignUpSchema = z.object({
   username: z
@@ -57,18 +58,20 @@ const LoginPage = () => {
         callbackUrl, 
       });
       if (!result?.error){
-        //🎯 hot-toast-error message - success
-        console.log('successfully signed in')
+        // 🍞 notifications  
+        //✖ console.log('successfully signed in')
+        toast.success("Successfully signed in")
         router.push("/")
       } else {
-        console.log("failed to login with given credentials")
-        //🎯hot-toast-error message - wrong username or password
-        //error message for form
+        // 🍞 notifications  
+        //✖ console.log("failed to login with given credentials")
         setError("task failed successfully")
+        toast.error("No user with these credentials")
       }
     } catch (err: any) {
-      //🎯hot-toast-error message - something went wrong 
-      console.log(err)
+      // 🍞 notifications  
+      //✖ console.log(err)
+      toast.error("Something went wrong")
     }
   }
 
@@ -100,7 +103,7 @@ const LoginPage = () => {
             type="submit" 
             className="text-lg tracking-wider p-2 mt-6 md:mt-8 px-4 bg-gray-700 font-semi-bold text-orange-500 border-2 border-orange-600"
           >
-            {/* 🎯 creating spinning animation <span className="hover:animate-spin h-5 w-5 mr-3">x</span> */}
+            {/* 🎯 creating spinning animation */}
             Login
           </button>
         </form>

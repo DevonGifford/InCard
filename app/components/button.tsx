@@ -16,7 +16,7 @@ const Button: React.FC<Props> =({
 }) => {
     return (
         <button
-            className="text-sm sm:text-xl md:text-2xl tracking-wider rounded-xl py-2 px-4 bg-gray-700 font-semi-bold text-orange-500 border-2 border-orange-600"
+            className="text-sm sm:text-xl md:text-2xl tracking-wider rounded-xl py-2 px-4 bg-gray-700 font-semi-bold text-orange-500 border-2 border-orange-600 focus:ring-2 shadow-lg transform active:scale-90 transition-transform"
             onClick={onClick}
             {...rest} // Pass any other button props
         >

@@ -1,10 +1,9 @@
 import { getServerSession } from "next-auth/next";
-import { options } from "../api/auth/[...nextauth]/options";
+import { options } from "../../api/auth/[...nextauth]/options";
 import { redirect } from "next/navigation";
-
-import UserCard from "@/app/components/usercard";
 import Link from "next/link";
-import Button from "../components/button";
+import Button from "../../components/button";
+import UserCard from "@/app/components/usercard";
 
 export default async function ServerPage() {
     const session = await getServerSession(options);
@@ -12,8 +11,7 @@ export default async function ServerPage() {
     if (!session) {
         redirect('/api/auth/signin?callbackUrl=/an-extra-page-example');
     } else {
-        //🎯handle notification of redirect 
-        //✖ console.log("👋current state of user session [SSR page]: ", session?.user);
+        //✖ console.log("👀 [SSR page] Current Session: ", session?.user);
     }
 
     return (

@@ -6,6 +6,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 
 import { MdOutlineClose } from "react-icons/md";
 import { GiHamburgerMenu } from "react-icons/gi" 
+import { toast } from "react-hot-toast";
 
 export default function Navbar() {
     //  ✅ Handle opening and Closing of SideBar
