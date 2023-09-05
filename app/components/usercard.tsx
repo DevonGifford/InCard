@@ -28,7 +28,6 @@ export default function Card({ user, pagetype }: Props) {
             />
         </div>
     ) : null
-    
     //👇 Conditional if User-Image exists (from OAuth) - opted to not use OAuth in this project
     const userImage = user?.image ? (
         <Image

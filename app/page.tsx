@@ -1,9 +1,8 @@
 import Image from 'next/image' 
 import { options } from "@/app/api/auth/[...nextauth]/options"
 import { getServerSession } from "next-auth/next"
-import { signIn } from 'next-auth/react'
-
-import UserCard from "@/app/components/usercard"
+//import { signIn } from 'next-auth/react'
+//import UserCard from "@/app/components/usercard"
 import YouShallNotPass from "./../public/you_shall_not_pass.png"
 import Link from 'next/link'
 
@@ -11,9 +10,8 @@ import HappyGandalf from "@/public/you_pass.png"
 import Button from './components/button'
 
 export default async function Home() {
+  
   const session = await getServerSession(options)
-
-
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between m-12">
