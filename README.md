@@ -3,7 +3,7 @@
     <h1>Technical Take-Home Assaignment</h1>
     <h3>React app handeling Authenticaton <h3>
     <h3> 
-      <a href='🎯insert live link here', target='_blank'>
+      <a href='https://incard-technical-assaignment-devon-gifford.vercel.app/', target='_blank'>
         <h5>live demo</h5>
       <a/>
     </h3>
