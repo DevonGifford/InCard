@@ -3,7 +3,7 @@ import Google from "@/public/other/Google.png";
 import LinkedIn from "@/public/other/LinkedIn.png";
 import Mailchimp from "@/public/other/mailchimp.png"; // Check if the filename case is correct
 import Shopify from "@/public/other/Shopify.png";
-import TikTok from "@/public/other/TikTok.svg";
+import TikTok from "@/public/other/Tiktok.svg";
 import Wordpress from "@/public/other/Wordpress.svg"; // Corrected the typo here
 
 const socialIcons = {
