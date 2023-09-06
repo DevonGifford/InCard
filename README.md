@@ -32,7 +32,7 @@ Tech Used in this Project
 
 <!-- Logo -->
 <div align=center>
-    <img src="INSERT DEMO IMAGE HERE 🎯" alt="Demo" title="DemoImage" width="" height="">     
+    <img src="/public/proto/incard-technical-demo.png" alt="Demo" title="DemoImage" width="600" height="400">     
    
 </div>
 
@@ -68,7 +68,9 @@ Tech Used in this Project
 <!-- -------------------------------------------------------------------------- -->
 <hr/>
 
-INSERT THE DESCRIPTION HERE 🎯
+A technical assessment for the company 'InCard', where I was tasked with building a web application to manage basic authentication.  I opted to use Next.js to fulfill the requirement of supporting both server-side and client-side rendering. The project is developed in TypeScript, ensuring strong typing and code quality. For testing, I utilized Jest and React Testing Library (RTL) to ensure the reliability of the application.
+Authentication and session management were implemented using the NextAuth library, providing a secure user experience. Additionally, the app integrates React Hot Toast for user-friendly notifications.
+The completed project is hosted on Vercel, showcasing the deployment of the application.
 
 
 
@@ -234,108 +236,6 @@ Good luck! Please let me know if that is all clear or if you have any questions?
 <!-- CLOSING DIV -->
 </details>
 <br/><br>
-
-
-
-
-
-
-
-
-###
-
-<!-- -------------------------------------------------------------------------- -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- -------------------------------------------------------------------------- -->
-
-<h1 align='left'> Development Thought-Process 💭</h1>
-<hr>
-
-<!-- -------------------------------------------------------------------------- -->
-
-<details>
-<summary> Click here to expand </summary>
-<br/>
-
-
-<!--? THIS IS MY TEMPLATE  -->
-
-### `INSERT FILE NAME HERE`
-
-<!-- -------------------------------------------------------------------------- -->
-
-<!-- Small container -->
-<details>
-<summary> Click here to expand </summary>
-<br/>
-
-#### INSERT HEADING 🎯
-
-insert some content here 🎯
-
-
-<!-- CLOSING DIV -->
-</details>
-
-<br>
-
-
-<!--? THIS IS MY TEMPLATE  -->
-
-### `INSERT FILE NAME HERE`
-
-<!-- -------------------------------------------------------------------------- -->
-
-<!-- Small container -->
-<details>
-<summary> Click here to expand </summary>
-<br/>
-
-#### INSERT HEADING 🎯
-
-insert some content here 🎯
-
-
-<!-- CLOSING DIV -->
-</details>
-
-<br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

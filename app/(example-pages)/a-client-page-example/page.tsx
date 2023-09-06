@@ -111,7 +111,7 @@ export default function ClientPage() {
   return (
     <section className="flex flex-col items-center justify-between p-5">
       <UserCard user={session?.user} pagetype={"Client"} />
-      <div className="w-1/2 flex flex-col gap-3 md:flex-row justify-evenly pt-10">
+      <div className="w-1/2 sm:w-1/4 flex flex-col gap-3 justify-evenly pt-10">
         <Button
           text="Log Session"
           onClick={() => logExpiration(session)}
