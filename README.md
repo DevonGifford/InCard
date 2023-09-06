@@ -1,7 +1,7 @@
 <!-- Introduction Text -->
 <div align="center">
-    <h1>Technical Take-Home Assaignment</h1>
-    <h3>React app handeling Authenticaton <h3>
+    <h1>InCard Take-Home Assaignment</h1>
+    <h3>React/Next app handeling Authenticaton <h3>
     <h3> 
       <a href='https://incard-technical-assaignment-devon-gifford.vercel.app/', target='_blank'>
         <h5>live demo</h5>
@@ -68,11 +68,11 @@ Tech Used in this Project
 <!-- -------------------------------------------------------------------------- -->
 <hr/>
 
-A technical assessment for the company 'InCard', where I was tasked with building a web application to manage basic authentication.  I opted to use Next.js to fulfill the requirement of supporting both server-side and client-side rendering. The project is developed in TypeScript, ensuring strong typing and code quality. For testing, I utilized Jest and React Testing Library (RTL) to ensure the reliability of the application.
-Authentication and session management were implemented using the NextAuth library, providing a secure user experience. Additionally, the app integrates React Hot Toast for user-friendly notifications.
+
+I was tasked with building a web application to manage basic authentication.  I opted to use <strong>Next.js</strong> to fulfill the requirement of supporting both <em>server-side</em> and <em>client-side</em> rendering.</br> The project is developed in <strong>TypeScript</strong>, ensuring strong typing and code quality. For testing, I utilized <strong>Jest</strong> and <strong>React Testing Library (RTL)</strong> to ensure the reliability of the application.
+
+Authentication and session management were implemented using the <strong>NextAuth</strong> library, providing a secure user experience. Additionally, the app integrates <strong>React-Hot-Toast</strong> for user-friendly notifications.<br>
 The completed project is hosted on Vercel, showcasing the deployment of the application.
-
-
 
 </br>
 
@@ -174,13 +174,13 @@ incard
 Create a React app, ideally in **Typescript**, with your preferred choice of tools. We want to see how you would structure it, the tools used and any best practices applied to improve dev productivity.
 Here are the requirements for the app:
 
-1.    It should consist of at least **two pages** - the **login and a home page**.
+1.   It should consist of at least **two pages** - the **login and a home page**.
 2.   It should be functional e.g. **login should take users to the home page** - *use 'incard' for username and password*.
 3.   It **should Handle errors** - *e.g. if incorrect details were entered or session has expired.*
 4.   The **session should be persistent** e.g. on page reload the user should not be taken back to the login page. If the session has expired then they should be redirected back to the login page.
 5.   It would be nice to **support SSR**.
 6.   Create **2-3 unit tests**.
-7.    **Deploy** the app
+7.   **Deploy** the app
 
 Good luck! Please let me know if that is all clear or if you have any questions?
 
@@ -216,9 +216,11 @@ Good luck! Please let me know if that is all clear or if you have any questions?
 
 #### Known issues: 
 
-💥 🎯
+💥 I need to fix and handle how the session is managed when callback to home page - currently ssr page does not rerender when session updates.
 
-💥 🎯
+💥 Need to throw an error or push user to sign-in page, if session has expired and user try's to manually update their session  
+
+💥 🎯 
 
 
 
@@ -227,10 +229,13 @@ Good luck! Please let me know if that is all clear or if you have any questions?
 
 #### Future Features & Improvements: 
 
-💥 🎯 adding user roles
+💥  adding user roles
+
+💥  auto signing out functionality after session expiration 
+
+💥  fleshing out user data - update SSR page 
 
 💥 🎯
-
 
 
 <!-- CLOSING DIV -->

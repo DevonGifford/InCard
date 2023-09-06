@@ -19,7 +19,6 @@ export default function ClientPage() {
 
   // ✅ Reset maxAge of session-token
   async function updateSession() {
-    // 🎯 check session is still avail ? why? - it should sign out if session ends.  
     // 👇 TryUpdate the session 
     try {
       await update({
@@ -37,6 +36,7 @@ export default function ClientPage() {
   }
 
   // ✅ Display time until auth-token expiration
+  // 🎯 clean up
   // function logExpiration() {
   //     try {
   //       const expirationRaw = session?.expires
