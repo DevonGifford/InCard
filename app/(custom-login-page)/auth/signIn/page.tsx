@@ -130,7 +130,7 @@ const LoginPage = () => {
         </div>
 
         {/* INPUT'S */}
-        <form onSubmit={handleSubmit(onSubmit)} className="form flex flex-col ">
+        <form onSubmit={handleSubmit(onSubmit)} className="form flex flex-col text-white ">
           <input
             placeholder="username"
             className="input w-3/5 max-w-[300px] min-w-[150px] text-white bg-gray-900 border-b-2 border-white"
