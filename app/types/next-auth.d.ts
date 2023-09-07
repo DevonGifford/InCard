@@ -7,8 +7,6 @@ import NextAuth, {
 } from "next-auth/next";
 import { JWT } from "next-auth/jwt";
 
-//🎯 Clean up the types
-
 declare module "next-auth/jwt" {
     /** 
      * Dev Note💻:  
@@ -59,6 +57,7 @@ declare module "next-auth" {
 
 
 /*
+Future Devon Note:
 The shape of the user object returned in th Oauth providers profile callback,
 or the second parameter of the session callback, when using a database.
 
