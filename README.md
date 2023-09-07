@@ -39,24 +39,6 @@ Tech Used in this Project
 <br>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!-- -------------------------------------------------------------------------- -->
 
 <h1 align='center'> Welcome & Introductory </h1>
@@ -93,20 +75,6 @@ incard
 **⚠ Please Note: This was part of a take home technical assaignment and is just a proof of concept.**
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!-- -------------------------------------------------------------------------- -->
 
 <br>
@@ -132,9 +100,10 @@ incard
 
 ✅ Should Handle errors - <em>(incorrect details entered or session expired etc.)</em>
 
-✅ Create 2-3 unit tests
-
 ✅ Deploy the app
+
+👨‍💻 Create 2-3 unit tests (in progress)
+
 
 </br>
 
@@ -171,14 +140,6 @@ incard
 
 
 
-
-
-
-
-
-
-
-
 ### 🎯 Known issues and potential improvements:
 
 <!-- -------------------------------------------------------------------------- -->
@@ -192,13 +153,9 @@ incard
 
 #### Known issues: 
 
-💥 I need to fix and handle how the session is managed when callback to home page - currently ssr page does not rerender when session updates.
+💥 I need to fix and handle how the session is managed when callback to home page post sign in success, currently SSR page does not rerender  when session updates. (Production Bug)
 
 💥 Need to throw an error or push user to sign-in page, if session has expired and user try's to manually update their session  
-
-💥 🎯 
-
-
 
 
 </br>
@@ -209,9 +166,7 @@ incard
 
 💥  auto signing out functionality after session expiration 
 
-💥  fleshing out user data - update SSR page 
-
-💥 🎯
+💥  fleshing out user data & update the SSR page 
 
 
 <!-- CLOSING DIV -->
