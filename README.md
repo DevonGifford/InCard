@@ -164,30 +164,6 @@ incard
 
 ---
 
-#### Copy of the raw instructions given: 
-<details>
-<summary> Click here to expand</summary>
-<br/>
-
-#### Little project so we can assess your Frontend technical skills:
-
-Create a React app, ideally in **Typescript**, with your preferred choice of tools. We want to see how you would structure it, the tools used and any best practices applied to improve dev productivity.
-Here are the requirements for the app:
-
-1.   It should consist of at least **two pages** - the **login and a home page**.
-2.   It should be functional e.g. **login should take users to the home page** - *use 'incard' for username and password*.
-3.   It **should Handle errors** - *e.g. if incorrect details were entered or session has expired.*
-4.   The **session should be persistent** e.g. on page reload the user should not be taken back to the login page. If the session has expired then they should be redirected back to the login page.
-5.   It would be nice to **support SSR**.
-6.   Create **2-3 unit tests**.
-7.   **Deploy** the app
-
-Good luck! Please let me know if that is all clear or if you have any questions?
-
-<!-- CLOSING DIV -->
-</details>
-<br/>
-
 <!-- CLOSING DIV -->
 </details>
 <br/>
