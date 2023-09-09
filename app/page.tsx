@@ -1,21 +1,63 @@
-import { getServerSession } from "next-auth/next";
-import { options } from "@/app/api/auth/[...nextauth]/options";
+import Image, { StaticImageData } from "next/image";
+import Link from "next/link";
 
-import HomeAuthenticatedPage from "./components/home_authenticated";
-import HomeUnauthenticatedPage from "./components/home_unauthenticated";
+import Button from "@/app/components/ui/button";
+import socialIcons from "@/public/other";
+import HomeUnauthenticated from "@/public/home/home_unauthenticated.png";
+
+const socialIconsTyped: { [key: string]: StaticImageData } = socialIcons;
 
 export default async function Home() {
-  const session = await getServerSession(options);
-
   return (
     <main className="flex min-h-screen flex-col items-center justify-between m-10">
-      {session ? (
-        //👇 USER HAS BEEN VALIDATED
-        <HomeAuthenticatedPage name={session?.user?.name} />
-      ) : (
-        //👇 USER HAS NOT BEEN VALIDATED
-        <HomeUnauthenticatedPage />
-      )}
+      <div className="flex flex-col justify-center gap-3 sm:gap-7 items-center text-center pt-20">
+        <h1 className="text-center pb-2 font-bold text-2xl sm:text-3xl lg:text-6xl mx-10">
+          <span className="text-incard-blue">Grow your online </span>
+          business <br /> with incard.
+        </h1>
+
+        <span className=" max-w-2xl text-sm sm:text-base sm:mx-14">
+          Faster payments. Higher limits. 24/7 support. Welcome to the worlds
+          first payment solution designed exclusively for e-commerce, marketers
+          and creators.
+        </span>
+
+        <Link href="/dashboard">
+          <Button text="Dashboard" />
+        </Link>
+
+        <p className="text-sm sm:text-xl">
+          This is{" "}
+          <strong className="text-incard-blue">a Client Side Rendered</strong>{" "}
+          Page
+        </p>
+
+        {/* IMAGE */}
+        <Image
+          className="w-full -z-10 md:-translate-y-24"
+          src={HomeUnauthenticated}
+          width={900}
+          height={300}
+          alt="You shall not pass"
+        />
+
+        {/* COMPANY LOGOS */}
+        <div className="flex flex-col -translate-y-20 md:-translate-y-72 justify-center items-center text-center gap-2 md:gap-10">
+          <span>We work across all major ecom platforms</span>
+          <div className="flex flex-col justify-center items-center md:flex-row gap-6 ">
+            {Object.keys(socialIcons).map((iconName: string, index: number) => (
+              <div key={index}>
+                <Image
+                  src={socialIconsTyped[iconName]}
+                  width={100}
+                  height={200}
+                  alt="company logo"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </main>
   );
 }

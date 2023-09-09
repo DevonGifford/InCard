@@ -23,8 +23,10 @@ test('tests the tester 2', () => {
 // });
 
 //🎯 FAILING - NAVBAR
+
+jest.mock('next-auth/react')
 test('tests the tester 3', () => {
-    render(<Navbar />)
+    render(<SessionProvider><Navbar /></SessionProvider>)
 
     const test = screen.getByText('shall not')
 

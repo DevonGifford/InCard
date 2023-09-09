@@ -1,14 +1,15 @@
 "use client";
 
-import React, { useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import React, { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { signIn } from "next-auth/react";
 import { toast } from "react-hot-toast";
+
 import FormBackground from "@/public/home/form_background.webp";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
@@ -61,15 +62,19 @@ const LoginPage = () => {
         redirect: false,
         callbackUrl,
       });
+      //🎯 this is not redirecting sometimes
       if (!result?.error) {
+        const callbackLink = (result?.url!) 
+        router.push(callbackLink);
         toast.success("Successfully signed in");
-        router.push("/");
       } else {
         setError("No user found with these credentials");
         toast.error("No user found with these credentials");
+        //🎯 reset form here?
       }
     } catch (err: any) {
-      toast.error("Something went wrong");
+      console.error(err);
+      toast.error("Something went wrong. Please try again later.");
     }
   };
 

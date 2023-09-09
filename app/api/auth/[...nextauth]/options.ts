@@ -2,6 +2,8 @@ import type { NextAuthOptions, Session, User } from "next-auth";
 import CredentialProvider from "next-auth/providers/credentials";
 import { JWT } from "next-auth/jwt";
 
+// 🤔 Note:  95% of this is boilerplate code straight out of the doc's
+
 export const options: NextAuthOptions = {
   providers: [
     CredentialProvider({
@@ -20,29 +22,27 @@ export const options: NextAuthOptions = {
       },
 
       async authorize(credentials) {
-        //👇 Normally would have some logic here for retrieving user data from db and then verify the credentials
+        //🤔 Note: Production would have some logic here for retrieving user data from db then compare/verify credentials
 
-        //👇 Hard coding a user for technical interviewer - normally have a post request to backend API
+        //🤔 Note: Hard coding a user for technical interviewer - Production would have a post request to backend API
         const user = {
           id: "001",
           name: "incard",
           password: "incard",
         };
-        //👇 Normally would have more extensive logic - would use bcrypt to be comparing passwords
+        //🤔 Note: Production would have more extensive logic - would use bcrypt to be comparing passwords etc.
         if (
           credentials?.username === user.name &&
           credentials.password === user.password
-        ) { //-Any object returned will be saved in `user` property of the JWT
+        ) {
           return user;
-        } else { //-If null then an error will be displayed advising the user to check their details.
+        } else {
           return null;
         }
-        //👉 Could also reject this callback with an Error & send user to an error page (w/ error message as a query parameter)
       },
     }),
   ],
-  // 👇 Adding a custom property to the session object
-  // 🤔 Basically, we just need to use the types that are already present in the next-auth (Session, JWT, Account) - these types only contain necessary properties. Hence, we need to augment its type.
+  // 👇 Cutomizing callback url's & adding properties to session object
   callbacks: {
     async jwt({ token, user }: { token: JWT; user?: User }): Promise<JWT> {
       token.customTokenProperty = "Added from JWT Callback";
@@ -51,18 +51,22 @@ export const options: NextAuthOptions = {
       if (user) {
         return {
           ...token,
-          custom_id: user.id, //-token id will be updated/set as userID 
+          custom_id: user.id, //-token id will be updated/set as userID
           name: user.name, //-store the username in the token because why not ..
         };
       }
       return token;
     },
 
-    async session({ session, token, user, }: {
-        session: Session;
-        token: JWT;
-        user: User;
-    }): Promise<Session> {    
+    async session({
+      session,
+      token,
+      user,
+    }: {
+      session: Session;
+      token: JWT;
+      user: User;
+    }): Promise<Session> {
       // 👇 Passs in CUSTOM DATA into the session
       // 🤔 The thought process is now we can access the user's id and name via session (when using the useSession hook)
       return {
@@ -75,20 +79,24 @@ export const options: NextAuthOptions = {
       };
       return session;
     },
+
+    async redirect({ url, baseUrl }) {
+      if (url.startsWith("/")) return `${baseUrl}${url}`;  //-Allows relative callback URLs
+      else if (new URL(url).origin === baseUrl) return url; //-Allows callback URLs on the same origin
+      return baseUrl;
+    },
   },
-  //👇 Default is JWT (encrypted JWT i.e. JWE) so don't really need to specify the below code - one way to set maxAge on session
+  //👇 Settting maxAge on session & JWT tokens
   session: {
-    strategy: "jwt", //-using JWT token
-    maxAge: 3 * 60, //-3 minutes
+    strategy: "jwt",
+    maxAge: 5 * 60,
   },
-  //👇 Default when using 'stratergy session' jwt stratergy - one way to set maxAge on jwt token
   jwt: {
-    maxAge: 3 * 60,
-    // secret: process.env.SECRET_KEY,
+    maxAge: 5 * 60,
   },
-  //👇 Custom callback URL in querey string - post signIn and signOut pages
+  //👇 Direct user to custom sign-in form
   pages: {
     signIn: "/auth/signIn",
-    signOut: "/",
+    signOut: "/auth/signIn",
   },
 };
