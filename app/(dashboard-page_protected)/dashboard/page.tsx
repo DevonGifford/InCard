@@ -18,7 +18,7 @@ export default function ClientPage() {
       redirect("/api/auth/signin?callbackUrl=/client");
     },
   });
-  // ✅ Reset maxAge of session-token
+  // ✅ Reset maxAge of session-token w/ Toast Notif
   async function updateSession() {
     try {
       await update({
@@ -84,24 +84,24 @@ export default function ClientPage() {
       </p>
 
       {/* CONTENT */}
-      <div className="flex flex-col md:flex-row gap-10 justify-around max-w-screen-lg">
-        
+      <div className="flex flex-col md:flex-row gap-10 justify-evenly max-w-screen-lg">
         {/* LOG SESSION */}
-        <div className="flex flex-col text-center gap-3 md:gap-6 xl:gap-10 translate-y-10">
+        <div className="max-w-[400px] min-w-[275px] flex flex-col text-center gap-3 md:gap-6 xl:gap-10 translate-y-10">
           <h1 className="text-lg sm:text-xl lg:text-2xl 2xl:text-3xl font-bold text-incard-blue sm:text-end">
-            Log time until expiration
+            Time until expiration
           </h1>
           <div className="sm:text-end text-sm sm:text-base 2xl:text-lg">
             <span>
-              Log a <strong>Toast Notifcation</strong> that will tell you how long until your
-              <strong> session expires</strong> and you will need to sign in again.
+              Display a <strong>Toast Notifcation</strong> that will tell you the
+              time remaining before your
+              <strong> session expires</strong> and you will need to sign in
+              again.
             </span>
           </div>
           <div className="text-center">
             <Button text="Log Session" onClick={() => logExpiration(session)} />
           </div>
         </div>
-
         <Image
           className="hidden md:block"
           src={HomeAuthenticated}
@@ -109,16 +109,15 @@ export default function ClientPage() {
           width={150}
           alt="HomeAuthenticated"
         />
-
         {/* UPDATE SESSION */}
-        <div className="flex flex-col text-center gap-3 md:gap-6 xl:gap-10 translate-y-10">
+        <div className="max-w-[400px] min-w-[275px] flex flex-col text-center gap-3 md:gap-6 xl:gap-10 translate-y-10">
           <h1 className="text-lg sm:text-xl lg:text-2xl 2xl:text-3xl font-bold text-incard-blue sm:text-start">
-            Reset Session expiration
+            Update session expiration
           </h1>
           <div className="text-center sm:text-start text-sm sm:text-base 2xl:text-lg">
             <span>
-            <strong>Reset your access token</strong> and your session will be reset will be
-              reset.  You will be <strong>authenticted for another 5 minutes</strong>.
+              <strong>Update your current session</strong>, your JWT will be reset. You will be{" "}
+              <strong>authenticted for another 5 minutes</strong>.
             </span>
           </div>
           <div className="text-center">

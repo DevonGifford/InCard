@@ -9,17 +9,16 @@ const socialIconsTyped: { [key: string]: StaticImageData } = socialIcons;
 
 export default async function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between m-10">
-      <div className="flex flex-col justify-center gap-3 sm:gap-7 items-center text-center pt-20">
-        <h1 className="text-center pb-2 font-bold text-2xl sm:text-3xl lg:text-6xl mx-10">
+    <main className="flex min-h-screen flex-col items-center justify-between m-5 sm:m-10">
+      <div className="flex flex-col justify-center gap-3 sm:gap-7 items-center text-center pt-5 sm:pt-20">
+        <h1 className="text-center pb-2 font-bold text-4xl lg:text-6xl mx-10">
           <span className="text-incard-blue">Grow your online </span>
           business <br /> with incard.
         </h1>
 
         <span className=" max-w-2xl text-sm sm:text-base sm:mx-14">
-          Faster payments. Higher limits. 24/7 support. Welcome to the worlds
-          first payment solution designed exclusively for e-commerce, marketers
-          and creators.
+          This is a Frontend take home assessment. Consists of 3 pages. SSR & CSR.  Authentication 
+          persistent sessions.  protected routes.  route handeling.  error handeling
         </span>
 
         <Link href="/dashboard">

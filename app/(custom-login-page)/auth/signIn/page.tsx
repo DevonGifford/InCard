@@ -1,39 +1,39 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
+import clsx from "clsx";
+import * as z from "zod";
 import React, { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import * as z from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
 import { toast } from "react-hot-toast";
 
-import FormBackground from "@/public/home/form_background.webp";
+import FormFooter from "@/app/components/ui/formfooter";
+import FormImage from "@/app/components/ui/form-image";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 const SignUpSchema = z.object({
   username: z
-    .string({
-      required_error: "Username cannot be empty",
-      invalid_type_error: "User name cannot contain special characters",
-    })
-    .min(3, { message: "Username is too short" })
-    .max(8, { message: "Usernmae is too long" }),
+    .string()
+    .nonempty( {message: '⚠ Username cannot be empty'})
+    .min(3, { message: "⚠ Username is too short" })
+    .max(8, { message: "⚠ Username is too long" }),
   password: z
     .string()
-    .min(3, { message: "Password is too short" })
-    .max(20, { message: "Password is too long" }),
+    .nonempty( {message: '⚠ Password cannot be empty'})
+    .min(3, { message: "⚠ Password is too short" })
+    .max(10, { message: "⚠ Password is too long" }),
 });
 type SignUpSchemaType = z.infer<typeof SignUpSchema>;
 
 const LoginPage = () => {
-  //✅ Handle callbacks - simpler to manage notifications
-  const searhParams = useSearchParams();
-  const callbackUrl = searhParams.get("callbackUrl") || "/";
-  const router = useRouter();
   const [error, setError] = useState("");
+  
+  //✅ Handle callbacks - simpler to manage notifications
+  const router = useRouter();
+  const searhParams = useSearchParams();
+  const callbackUrl = searhParams.get("callbackUrl") || "/dashboard";
 
   //✅ Handle hiding/showing password
   const [isShown, setIsSHown] = useState(false);
@@ -57,20 +57,18 @@ const LoginPage = () => {
   const onSubmit: SubmitHandler<SignUpSchemaType> = async (data) => {
     try {
       const result = await signIn("credentials", {
-        username: data.username,
-        password: data.password,
+        username: data.username.trim(),
+        password: data.password.trim(),
         redirect: false,
         callbackUrl,
       });
-      //🎯 this is not redirecting sometimes
       if (!result?.error) {
         const callbackLink = (result?.url!) 
         router.push(callbackLink);
         toast.success("Successfully signed in");
       } else {
-        setError("No user found with these credentials");
-        toast.error("No user found with these credentials");
-        //🎯 reset form here?
+        setError("⚠ Login failed. Please check your credentials and try again.");
+        toast.error("Login failed, please check your credentials and try again.");
       }
     } catch (err: any) {
       console.error(err);
@@ -81,76 +79,53 @@ const LoginPage = () => {
   return (
     <div className="flex flex-row h-screen gap-1">
       {/* BACKGROUND IMAGE */}
-      <div className="w-4/5 max-w-screen-xl"></div>
-      <div className="relative overflow-hidden items-center mb-14 w-full h-[113vh] bg-right -translate-y-20">
-        <Image
-          className=" overflow-hidden"
-          src={FormBackground}
-          objectFit="cover"
-          layout="fill"
-          alt="login-image"
-          priority={true}
-          quality={100}
-        />
-      </div>
+      <FormImage />
 
       {/* FORM */}
-      <div className="absolute h-[113vh] w-full sm:w-3/5 lg:max-w-screen-xl px-20 pr-20 py-3 border-2 border-incard-blue bg-gray-900 flex flex-col gap-7 -translate-y-20">
-        {/* HEADER */}
-        <div className="flex flex-col pb-2 pt-24 lg:pt-40 xl:pt-52">
-          <span className=" font-bold tracking-widest text-xl md:text-3xl py-2 pb-3 mb-3 border-b-2 border-incard-blue">Hello !</span>
-          <span className="text-zinc-300"> Log in to your incard account.</span>
-          <span className="text-red-700 text-sm translate-y-8">{error}</span>
-        </div>
+      <div className="absolute items-center h-[113vh] w-full sm:w-3/5 lg:max-w-screen-xl px-8 sm:px-10 py-3 bg-gray-900 flex flex-col gap-3 sm:gap-7 -translate-y-20">
 
         {/* INPUT'S */}
-        <form onSubmit={handleSubmit(onSubmit)} className="form flex flex-col text-white">
-
-          {/* USERNAME */}
-          <input
-            placeholder="username"
-            className="input w-3/5 max-w-[300px] min-w-[150px] text-white bg-gray-900 border-b-2 border-white"
-            {...register("username")}
-          />
-          {errors.username && (<span className="text-red-700 text-sm pt-2">{errors.username.message}</span>)}
-          
-          {/* PASSWORD */}
-          <div className="flex flex-row">
-            <input
-              type={isShown ? "text" : "password"}
-              placeholder="password"
-              className="mt-6 md:mt-10 input w-3/5 max-w-[300px] min-w-[150px] text-white bg-gray-900 border-b-2 border-white"
-              {...register("password")}
-            />
-            <div className=" flex items-end justify-end" onClick={togglePassword}>
-              {isShown ? ( <AiOutlineEye size={28} /> ) : ( <AiOutlineEyeInvisible size={28} />)}
-            </div>
+        <form onSubmit={handleSubmit(onSubmit)} className="form flex flex-col pt-10 sm:px-14 text-white">
+          <div className="flex flex-col pb-2 pt-16 lg:pt-32 xl:pt-40">
+            <span className=" font-bold tracking-widest text-2xl sm:text-3xl py-1 mb-0 sm:mb-2 ">Hello !</span>
+            <span className="text-zinc-300 mb-1"> Log in to your incard account.</span>
           </div>
-          {errors.password && (<span className="text-red-700 text-sm pt-2">{errors.password.message}</span>)}
-          
-          {/* SUBMIT BUTTON */}
-          <button
-            type="submit"
-            className="w-28 text-base md:text-lg tracking-wider rounded-full p-2 mt-6 md:mt-8 px-4 bg-incard-blue font-semi-bold text-black border-2 border-incard-blue"
-          >
+          {/* USERNAME INPUT */}
+          <div className="flex flex-col sm:pb-2" onClick={()=>setError("")}>
+            <h3 className=" font-extralight pb-4">Username</h3>
+            <input
+              placeholder=""
+              className={clsx("input text-white bg-gray-900 rounded-l border-2 border-gray-400 focus:outline-none focus:border-incard-blue p-2", errors.username  || error ? "border-red-900" : "border-gray-400" )}
+              {...register("username")}
+            />
+            {errors.username && (<span className="absolute translate-y-20 sm:translate-y-18 text-red-700 text-sm pt-2">{errors.username.message}</span>)}
+          </div>
+          {/* PASSWORD INPUT*/}
+          <div className="flex flex-col mt-6 pb-3" onClick={()=>setError("")}>
+            <h3 className=" font-extralight pb-1">Password</h3>
+            <div className="flex flex-col" >
+              <input
+                type={isShown ? "text" : "password"}
+                placeholder=""
+                className={clsx("input text-white bg-gray-900 rounded-l border-2 border-gray-400 focus:outline-none focus:border-incard-blue p-2", errors.password  || error ? "border-red-900" : "border-gray-400" )}
+                {...register("password")}
+              />
+              <div className="relative -translate-y-1 -translate-x-2 flex items-end justify-end cursor-pointer h-0" onClick={togglePassword}>
+                {isShown ? ( <AiOutlineEye size={30} /> ) : ( <AiOutlineEyeInvisible size={30} />)}
+              </div>
+            </div>
+            {errors.password && (<span className="absolute translate-y-16 sm:translate-y-18 text-red-700 text-sm pt-2">{errors.password.message}</span>)}
+          </div>
+          {/* ERROR MESSAGE */}
+          <span className="text-red-600 text-sm sm:text-base max-w-[350px]">{error}</span>
+          {/* SUBMIT FORM BUTTON */}
+          <button type="submit" className=" w-40 mb-5 text-base md:text-lg tracking-wider rounded-lg p-2 mt-4 md:mt-8 px-4 bg-incard-blue font-semi-bold text-black border-2 border-incard-blue">
             Log in
           </button>
-        </form>
 
-        {/* FOOTER */}
-        <span className="pt-5 lg:pt-5 text-incard-blue font-semibold">
-          <Link href="/"> Back to Home Page </Link>
-        </span>
-        <div className="flex flex-col gap-2 justify-evenly pt-1">
-          <span className="text-base text-zinc-300">
-            Dont have an account?{" "}
-            <Link href="/an-extra-page-example">
-              <span className="text-base font-bold hover:font-heavy text-incard-blue">
-                <br /> Sign up
-              </span>
-            </Link>
-          </span>
-        </div>
+        {/* FORM FOOTER 🎯 MOVE TO SEPERATE COMPONENT*/}
+        <FormFooter />
+        </form>
       </div>
     </div>
   );
