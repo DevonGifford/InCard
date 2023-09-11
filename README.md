@@ -155,7 +155,7 @@ incard
 
 💥 I need to fix and handle how the session is managed when callback to home page post sign in success, currently SSR page does not rerender  when session updates. (Production Bug)
 
-💥 Need to throw an error or push user to sign-in page, if session has expired and user try's to manually update their session  
+💥 Need to throw an error or push user to sign-in page, if session time has elapsed and user try's to manually update their session  
 
 
 </br>
@@ -164,9 +164,13 @@ incard
 
 💥  adding user roles
 
-💥  auto signing out functionality after session expiration 
+💥  auto signing out functionality after session expiration has elapsed
 
 💥  fleshing out user data & update the SSR page 
+
+💥  adding user profile picture 
+
+💥  adding some loaders and spinners on buttons - improve UI  
 
 
 <!-- CLOSING DIV -->
