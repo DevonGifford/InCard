@@ -6,7 +6,7 @@ type SocialIcons = {
     LinkedIn: StaticImageData;
     Mailchimp: StaticImageData;
     Shopify: StaticImageData;
-    TikTok: StaticImageData;
+    Tiktok: StaticImageData;
     Wordpress: StaticImageData;
   };
 
