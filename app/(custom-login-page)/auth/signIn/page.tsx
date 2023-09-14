@@ -94,6 +94,7 @@ const LoginPage = () => {
           <div className="flex flex-col sm:pb-2" onClick={()=>setError("")}>
             <h3 className=" font-extralight pb-4">Username</h3>
             <input
+              role="username-input"
               placeholder=""
               className={clsx("input text-white bg-gray-900 rounded-l border-2 border-gray-400 focus:outline-none focus:border-incard-blue p-2", errors.username  || error ? "border-red-900" : "border-gray-400" )}
               {...register("username")}
@@ -105,12 +106,13 @@ const LoginPage = () => {
             <h3 className=" font-extralight pb-1">Password</h3>
             <div className="flex flex-col" >
               <input
+                role="password-input"
                 type={isShown ? "text" : "password"}
                 placeholder=""
                 className={clsx("input text-white bg-gray-900 rounded-l border-2 border-gray-400 focus:outline-none focus:border-incard-blue p-2", errors.password  || error ? "border-red-900" : "border-gray-400" )}
                 {...register("password")}
               />
-              <div className="relative -translate-y-1 -translate-x-2 flex items-end justify-end cursor-pointer h-0" onClick={togglePassword}>
+              <div className="relative -translate-y-1 -translate-x-2 flex items-end justify-end cursor-pointer h-0" onClick={togglePassword} data-testid="toggle-password-vis">
                 {isShown ? ( <AiOutlineEye size={30} /> ) : ( <AiOutlineEyeInvisible size={30} />)}
               </div>
             </div>
@@ -123,7 +125,7 @@ const LoginPage = () => {
             Log in
           </button>
 
-        {/* FORM FOOTER 🎯 MOVE TO SEPERATE COMPONENT*/}
+        {/* FORM FOOTER */}
         <FormFooter />
         </form>
       </div>

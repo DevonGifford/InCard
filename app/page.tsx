@@ -11,7 +11,7 @@ export default async function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between m-5 sm:m-10">
       <div className="flex flex-col justify-center gap-3 sm:gap-7 items-center text-center pt-5 sm:pt-20">
-        <h1 className="text-center pb-2 font-bold text-4xl lg:text-6xl mx-10">
+        <h1 className="text-center pb-2 font-bold text-4xl lg:text-6xl mx-10" role="heading">
           <span className="text-incard-blue">Grow your online </span>
           business <br /> with incard.
         </h1>
@@ -38,6 +38,7 @@ export default async function Home() {
           width={900}
           height={300}
           alt="You shall not pass"
+          role="background-image"
         />
 
         {/* COMPANY LOGOS */}
@@ -51,6 +52,7 @@ export default async function Home() {
                   width={100}
                   height={200}
                   alt="company logo"
+                  role="company-logo"
                 />
               </div>
             ))}
