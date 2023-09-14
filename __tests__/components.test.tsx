@@ -3,8 +3,8 @@ import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import Button from "@/app/components/ui/button";
-import CustomLink from "@/app/components/ui/customlink";
-import FormFooter from "@/app/components/ui/formfooter";
+import CustomLink from "@/app/components/ui/sidebar-link";
+import FormFooter from "@/app/components/ui/form-footer";
 
 import SideBar from "@/app/components/sidebar";
 import Navbar from "@/app/components/navbar";

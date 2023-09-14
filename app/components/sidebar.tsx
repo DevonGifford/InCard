@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { GiHamburgerMenu } from "react-icons/gi";
 
-import CustomLink from "@/app/components/ui/customlink";
+import CustomLink from "@/app/components/ui/sidebar-link";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { ExternalLink, Github, Linkedin } from "lucide-react";
 import {
   Sheet,
   SheetContent,
@@ -9,7 +10,6 @@ import {
   SheetHeader,
   SheetTrigger,
 } from "@/app/components/ui/sheet";
-import { ExternalLink, Github, Linkedin } from "lucide-react";
 
 
 export default function SideBar () {

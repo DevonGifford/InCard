@@ -17,8 +17,8 @@ export default async function Home() {
         </h1>
 
         <span className=" max-w-2xl text-sm sm:text-base sm:mx-14">
-          This is a Frontend take home assessment. Consists of 3 pages. SSR & CSR.  Authentication 
-          persistent sessions.  protected routes.  route handeling.  error handeling
+          This is a Frontend take home assessment. It consists of 3 pages - SSR & CSR.  Authentication 
+          with persistent sessions.  Protected routes.  Route handeling.  Error handeling
         </span>
 
         <Link href="/dashboard">

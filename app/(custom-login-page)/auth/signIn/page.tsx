@@ -9,7 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
 import { toast } from "react-hot-toast";
 
-import FormFooter from "@/app/components/ui/formfooter";
+import FormFooter from "@/app/components/ui/form-footer";
 import FormImage from "@/app/components/ui/form-image";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
@@ -83,13 +83,12 @@ const LoginPage = () => {
 
       {/* FORM */}
       <div className="absolute items-center h-[113vh] w-full sm:w-3/5 lg:max-w-screen-xl px-8 sm:px-10 py-3 bg-gray-900 flex flex-col gap-3 sm:gap-7 -translate-y-20">
-
-        {/* INPUT'S */}
         <form onSubmit={handleSubmit(onSubmit)} className="form flex flex-col pt-10 sm:px-14 text-white">
           <div className="flex flex-col pb-2 pt-16 lg:pt-32 xl:pt-40">
             <span className=" font-bold tracking-widest text-2xl sm:text-3xl py-1 mb-0 sm:mb-2 ">Hello !</span>
             <span className="text-zinc-300 mb-1"> Log in to your incard account.</span>
           </div>
+
           {/* USERNAME INPUT */}
           <div className="flex flex-col sm:pb-2" onClick={()=>setError("")}>
             <h3 className=" font-extralight pb-4">Username</h3>
@@ -101,6 +100,7 @@ const LoginPage = () => {
             />
             {errors.username && (<span className="absolute translate-y-20 sm:translate-y-18 text-red-700 text-sm pt-2">{errors.username.message}</span>)}
           </div>
+
           {/* PASSWORD INPUT*/}
           <div className="flex flex-col mt-6 pb-3" onClick={()=>setError("")}>
             <h3 className=" font-extralight pb-1">Password</h3>
@@ -118,6 +118,7 @@ const LoginPage = () => {
             </div>
             {errors.password && (<span className="absolute translate-y-16 sm:translate-y-18 text-red-700 text-sm pt-2">{errors.password.message}</span>)}
           </div>
+
           {/* ERROR MESSAGE */}
           <span className="text-red-600 text-sm sm:text-base max-w-[350px]">{error}</span>
           {/* SUBMIT FORM BUTTON */}

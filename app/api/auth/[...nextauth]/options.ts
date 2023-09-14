@@ -46,8 +46,7 @@ export const options: NextAuthOptions = {
   callbacks: {
     async jwt({ token, user }: { token: JWT; user?: User }): Promise<JWT> {
       token.customTokenProperty = "Added from JWT Callback";
-      // 👇 Pass in CUSTOM DATA into to token
-      // 🤔 The thought process is now (say this was production app) we could now use post requests based on the users id or name
+      // 👇 Pass in CUSTOM DATA into to token - 🤔 The thought process is now (say this was production app) we could now use post requests based on the users id or name
       if (user) {
         return {
           ...token,
@@ -67,8 +66,7 @@ export const options: NextAuthOptions = {
       token: JWT;
       user: User;
     }): Promise<Session> {
-      // 👇 Passs in CUSTOM DATA into the session
-      // 🤔 The thought process is now we can access the user's id and name via session (when using the useSession hook)
+      // 👇 Passs in CUSTOM DATA into the session - 🤔 The thought process is now we can access the user's id and name via session (when using the useSession hook)
       return {
         ...session,
         user: {

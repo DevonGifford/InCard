@@ -32,7 +32,9 @@ Tech Used in this Project
 
 <!-- Logo -->
 <div align=center>
-    <img src="/public/proto/incard-technical-demo.png" alt="Demo" title="DemoImage" width="600" height="400">     
+    <img src="/public/homepage-demo.png" alt="Demo-Home" title="DemoImage-home" width="400" height="300"> 
+    <img src="/public/loginpage-demo.png" alt="Demo-Login" title="DemoImage-login" width="400" height="300"> 
+    <img src="/public/dashboardpage-demo.png" alt="Demo-Dashbaord" title="DemoImage-dashboard" width="400" height="300">     
    
 </div>
 
@@ -51,7 +53,7 @@ Tech Used in this Project
 <hr/>
 
 
-I was tasked with building a web application to manage basic authentication.  I opted to use <strong>Next.js</strong> to fulfill the requirement of supporting both <em>server-side</em> and <em>client-side</em> rendering.</br> The project is developed in <strong>TypeScript</strong>, ensuring strong typing and code quality. For testing, I utilized <strong>Jest</strong> and <strong>React Testing Library (RTL)</strong> to ensure the reliability of the application.
+I was tasked with building a web application to manage basic authentication.  I opted to use <strong>Next.js</strong> to fulfill the requirement of supporting both <em>server-side</em> and <em>client-side</em> rendering.</br> The project is developed with <strong>TypeScript</strong>, ensuring strong typing and code quality. For testing, I utilized <strong>Jest</strong> and <strong>React Testing Library (RTL)</strong> to ensure the reliability of the application.
 
 Authentication and session management were implemented using the <strong>NextAuth</strong> library, providing a secure user experience. Additionally, the app integrates <strong>React-Hot-Toast</strong> for user-friendly notifications.<br>
 The completed project is hosted on Vercel, showcasing the deployment of the application.
@@ -102,7 +104,7 @@ incard
 
 ✅ Deploy the app
 
-👨‍💻 Create 2-3 unit tests (in progress)
+✅ Create 2-3 unit tests (in progress)
 
 
 </br>
@@ -153,8 +155,6 @@ incard
 
 #### Known issues: 
 
-💥 I need to fix and handle how the session is managed when callback to home page post sign in success, currently SSR page does not rerender  when session updates. (Production Bug)
-
 💥 Need to throw an error or push user to sign-in page, if session time has elapsed and user try's to manually update their session  
 
 
@@ -170,7 +170,7 @@ incard
 
 💥  adding user profile picture 
 
-💥  adding some loaders and spinners on buttons - improve UI  
+💥  adding some loaders and spinners on buttons - small things to improve UI and responsivness feel 
 
 
 <!-- CLOSING DIV -->
@@ -196,7 +196,7 @@ incard
 <br/>
 
 
-insert code coverage image here 🎯
+<img src="/public/code-coverage-demo.png" alt="Demo-Dashbaord" title="DemoImage-dashboard" width="600" height="600"> 
 
 <!-- CLOSING DIV -->
 </details>
