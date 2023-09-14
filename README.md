@@ -32,9 +32,9 @@ Tech Used in this Project
 
 <!-- Logo -->
 <div align=center>
-    <img src="/public/homepage-demo.png" alt="Demo-Home" title="DemoImage-home" width="400" height="300"> 
-    <img src="/public/loginpage-demo.png" alt="Demo-Login" title="DemoImage-login" width="400" height="300"> 
-    <img src="/public/dashboardpage-demo.png" alt="Demo-Dashbaord" title="DemoImage-dashboard" width="400" height="300">     
+    <img src="/public/github/homepage-demo.png" alt="Demo-Home" title="DemoImage-home" width="400" height="300"> 
+    <img src="/public/github/loginpage-demo.png" alt="Demo-Login" title="DemoImage-login" width="400" height="300"> 
+    <img src="/public/github/dashboardpage-demo.png" alt="Demo-Dashbaord" title="DemoImage-dashboard" width="400" height="300">     
    
 </div>
 
@@ -60,7 +60,9 @@ The completed project is hosted on Vercel, showcasing the deployment of the appl
 
 </br>
 
-**You can use the following credentials for a successful login:**
+#### **You can use the following credentials for a successful login:**
+
+**⚠ Please Note: This was part of a take home technical assaignment and is just a proof of concept.**
 
 Username:
 ```shell
@@ -74,7 +76,6 @@ incard
 
 <br/>
 
-**⚠ Please Note: This was part of a take home technical assaignment and is just a proof of concept.**
 
 
 <!-- -------------------------------------------------------------------------- -->
@@ -102,9 +103,9 @@ incard
 
 ✅ Should Handle errors - <em>(incorrect details entered or session expired etc.)</em>
 
-✅ Deploy the app
+✅ Implement basic testing, minimum of 2-3 unit tests
 
-✅ Create 2-3 unit tests (in progress)
+✅ Deploy the app
 
 
 </br>
@@ -125,11 +126,13 @@ incard
 ##### BONUS FEATURES:
 <hr>
 
-✅ Landing/Splash page
+✅ Landing/Home page
+
+✅ Protected & Un-protected Server/Client side page's.  
+
+✅ Replicate the basic styling of incard's current website layout
 
 ✅ Interactive NavBar with Hamburger menu
-
-✅ Protected & Un-protected Server/Client side page's for testing  
 
 <br/>
 
@@ -196,7 +199,7 @@ incard
 <br/>
 
 
-<img src="/public/code-coverage-demo.png" alt="Demo-Dashbaord" title="DemoImage-dashboard" width="600" height="600"> 
+<img src="/public/github/code-coverage-demo.png" alt="Demo-Dashbaord" title="DemoImage-dashboard" width="800" height="600"> 
 
 <!-- CLOSING DIV -->
 </details>
