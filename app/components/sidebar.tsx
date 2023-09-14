@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { GiHamburgerMenu } from "react-icons/gi";
 
-import CustomLink from "@/app/components/ui/customlink";
+import CustomLink from "@/app/components/ui/sidebar-link";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { ExternalLink, Github, Linkedin } from "lucide-react";
 import {
   Sheet,
   SheetContent,
@@ -9,7 +10,6 @@ import {
   SheetHeader,
   SheetTrigger,
 } from "@/app/components/ui/sheet";
-import { ExternalLink, Github, Linkedin } from "lucide-react";
 
 
 export default function SideBar () {
@@ -18,7 +18,7 @@ export default function SideBar () {
       {/* SIDEBAR COMPONENT */}
       <Sheet>
         <SheetTrigger asChild className=" cursor-pointer hover:text-incard-blue hover:scale-110">
-          <GiHamburgerMenu size={30} />
+          <GiHamburgerMenu size={30} data-testid='SideBar-Trigger' />
         </SheetTrigger>
         <SheetContent side={"left"} className=" bg-incard-blue/80">
           <SheetHeader>

@@ -49,7 +49,7 @@ export default function ClientPage() {
           (
             t //- Display the time in toast notif
           ) => (
-            <div className="flex">
+            <div className="flex" data-testid="log-session-notif">
               <span>
                 You have{" "}
                 <b>
@@ -73,7 +73,7 @@ export default function ClientPage() {
   return (
     <section className="flex flex-col items-center justify-between p-5 md:pt-20 mx-10">
       {/* HEADER */}
-      <h1 className="text-center text-2xl sm:text-3xl lg:text-5xl text-incard-blue">
+      <h1 className="text-center text-2xl sm:text-3xl lg:text-5xl text-incard-blue" role="heading">
         <span className=" text-white">Welcome to your </span>
         Dashboard, {session?.user?.name}
       </h1>
@@ -87,10 +87,10 @@ export default function ClientPage() {
       <div className="flex flex-col md:flex-row gap-10 justify-evenly max-w-screen-lg">
         {/* LOG SESSION */}
         <div className="max-w-[400px] min-w-[275px] flex flex-col text-center gap-3 md:gap-6 xl:gap-10 translate-y-10">
-          <h1 className="text-lg sm:text-xl lg:text-2xl 2xl:text-3xl font-bold text-incard-blue sm:text-end">
+          <h1 className="text-lg sm:text-xl lg:text-2xl 2xl:text-3xl font-bold text-incard-blue sm:text-end" data-testid="log-session-heading">
             Time until expiration
           </h1>
-          <div className="sm:text-end text-sm sm:text-base 2xl:text-lg">
+          <div className="sm:text-end text-sm sm:text-base 2xl:text-lg" data-testid="log-session-description">
             <span>
               Display a <strong>Toast Notifcation</strong> that will tell you the
               time remaining before your
@@ -111,10 +111,10 @@ export default function ClientPage() {
         />
         {/* UPDATE SESSION */}
         <div className="max-w-[400px] min-w-[275px] flex flex-col text-center gap-3 md:gap-6 xl:gap-10 translate-y-10">
-          <h1 className="text-lg sm:text-xl lg:text-2xl 2xl:text-3xl font-bold text-incard-blue sm:text-start">
+          <h1 className="text-lg sm:text-xl lg:text-2xl 2xl:text-3xl font-bold text-incard-blue sm:text-start" data-testid="update-session-heading">
             Update session expiration
           </h1>
-          <div className="text-center sm:text-start text-sm sm:text-base 2xl:text-lg">
+          <div className="text-center sm:text-start text-sm sm:text-base 2xl:text-lg" data-testid="update-session-description">
             <span>
               <strong>Update your current session</strong>, your JWT will be reset. You will be{" "}
               <strong>authenticted for another 5 minutes</strong>.
