@@ -8,7 +8,7 @@ const clientLogo: { [key: string]: StaticImageData } = clientLogos;
 
 export default async function Home() {
   return (
-    <main className="flex flex-col h-[80vh] justify-evenly items-center  gap-8 bg-cover bg-center bg-no-repeat bg-[url('/incard-images/home_horizontal_card.png')] ">
+    <main className="flex flex-col h-[80vh] justify-evenly items-center gap-8 bg-cover bg-center bg-no-repeat bg-[url('/incard-images/home_horizontal_card.png')] mt-8 md:pt-1">
       <header className="flex flex-col text-center space-y-4 md:space-y-14 ">
         <p className="flex flex-col font-bold text-4xl lg:text-6xl">
           <span className="text-incard-blue">Grow your online </span>
@@ -30,17 +30,17 @@ export default async function Home() {
           We work across all major ecom platforms
         </span>
 
-        <div className="w-[90vw] md:w-[80vw] inline-flex flex-nowrap gap-20 overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)] group">
+        <div className="w-[90vw] inline-flex flex-nowrap gap-20 overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)] group">
           <ul className="flex space-x-20 items-center justify-center animate-infinite-scroll group-hover:paused cursor-pointer">
             {Object.keys(clientLogos).map((iconName: string, index: number) => (
               <div
                 key={index}
-                className="hidden lg:flex items-center justify-center animate-infinite-scroll group-hover:paused cursor-pointer"
+                className="flex items-center justify-center animate-infinite-scroll group-hover:paused cursor-pointer"
               >
                 <Image
                   src={clientLogo[iconName]}
-                  width={200}
-                  height={200}
+                  width={100}
+                  height={100}
                   alt="company logo"
                   className="max-w-none"
                 />
