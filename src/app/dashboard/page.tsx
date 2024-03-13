@@ -14,7 +14,7 @@ export default function DashboardPage() {
   const { data: session, update } = useSession({
     required: true,
     onUnauthenticated() {
-      redirect("/api/auth/signin?callbackUrl=/client");
+      redirect("/auth/signIn");
     },
   });
 
