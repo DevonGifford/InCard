@@ -22,7 +22,6 @@ test("should render the dashboard page - client side", () => {
   }));
 
   useSession.mockReturnValue({});
-
   render(<DashboardPage />);
 
   // Assert
@@ -36,6 +35,7 @@ jest.mock("next/navigation", () => ({
 }));
 
 test("should render the login page", () => {
+  //Assemble
   const useRouterMock = useRouter as jest.Mock;
   useRouterMock.mockReturnValue({
     query: {},
@@ -50,7 +50,7 @@ test("should render the login page", () => {
 
   render(<LoginPage />);
 
-  // Assert that the component renders without errors
+  // Assert 
   expect(screen.getByText("Hello!")).toBeInTheDocument();
 });
 

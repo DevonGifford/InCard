@@ -4,7 +4,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import toast from "react-hot-toast";
-import SideBar from "./sidebar";
+import SideBar from "./Sidebar";
 import Logo from "@/public/incard_logo.png";
 
 export default function Navbar() {

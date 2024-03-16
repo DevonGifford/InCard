@@ -2,7 +2,7 @@ type Props = {
   timeRemaining: number;
 };
 
-export const CustomTimeToast = (timeRemaining: Props) => {
+export const TimeTilExpirationToast = (timeRemaining: Props) => {
   const minutesRemaining = Math.floor(
     timeRemaining.timeRemaining / (1000 * 60)
   );
@@ -30,7 +30,7 @@ export const CustomTimeToast = (timeRemaining: Props) => {
   );
 };
 
-export const CustomErrorToast = () => {
+export const ExpiredSessionToast = () => {
   return (
     <div className="max-w-md w-full bg-neutral-800 shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5">
       <div className="flex-1 w-0 p-4">

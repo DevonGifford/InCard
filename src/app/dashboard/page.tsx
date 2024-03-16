@@ -3,7 +3,7 @@
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import { toast } from "react-hot-toast";
-import { CustomErrorToast, CustomTimeToast } from "@/src/lib/customToasts";
+import { ExpiredSessionToast, TimeTilExpirationToast } from "@/src/lib/customToasts";
 import Image from "next/image";
 import Button from "../../components/ui/button";
 import dashboardImage from "@/public/incard-images/dashboard_vertical_card.png";
@@ -18,7 +18,7 @@ export default function DashboardPage() {
     },
   });
 
-  async function updateSession() {
+  async function refreshSessionExpiration() {
     if (new Date(session!.expires) > new Date()) {
       try {
         await update({ ...session, user: { ...session?.user } });
@@ -27,25 +27,25 @@ export default function DashboardPage() {
         toast.error("Failed to update session expiration");
       }
     } else {
-      toast.custom(<CustomErrorToast />);
+      toast.custom(<ExpiredSessionToast />);
     }
   }
 
-  function calculateTimeRemaining(expirationRaw: string) {
-    const expirationTime = new Date(expirationRaw);
+  function calculateTimeRemaining(session_expiration: string) {
+    const expirationTime = new Date(session_expiration);
     const currentTime = new Date();
     return expirationTime.getTime() - currentTime.getTime();
   }
 
-  function logExpiration(session: { expires: SessionExpires } | null) {
+  function displaySessionExpiration(session: { expires: SessionExpires } | null) {
     try {
-      const expirationRaw: SessionExpires = session?.expires;
-      if (expirationRaw) {
-        const timeRemaining = calculateTimeRemaining(expirationRaw);
+      const session_expiration: SessionExpires = session?.expires;
+      if (session_expiration) {
+        const timeTilExpiration = calculateTimeRemaining(session_expiration);
         toast.custom(
-          timeRemaining > 0 
-            ? <CustomTimeToast timeRemaining={timeRemaining} />
-            : <CustomErrorToast />
+          timeTilExpiration > 0 
+            ? <TimeTilExpirationToast timeRemaining={timeTilExpiration} />
+            : <ExpiredSessionToast />
         );
       }
     } catch (error) {
@@ -66,7 +66,7 @@ export default function DashboardPage() {
             <strong>remaining session time</strong> before your will be prompted
             to sign in again.
           </p>
-          <Button text="Log Session" onClick={() => logExpiration(session)} />
+          <Button text="Log Session" onClick={() => displaySessionExpiration(session)} />
         </section>
         <Image
           src={dashboardImage}
@@ -84,7 +84,7 @@ export default function DashboardPage() {
             will remain authenticated for an additional{" "}
             <strong> three minutes</strong>.
           </p>
-          <Button text="Update Session" onClick={updateSession} />
+          <Button text="Update Session" onClick={refreshSessionExpiration} />
         </section>
       </div>
     </section>
