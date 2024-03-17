@@ -29,11 +29,7 @@ const CustomLink: React.FC<CustomLinkProps> = ({
             </div>
 
             <div className="text-gray-200/60">
-              {client ? (
-                <span>Client Side</span>
-              ) : (
-                <span>Server Side</span>
-              )}
+              {client ? <span>Client Side</span> : <span>Server Side</span>}
             </div>
           </div>
         </div>
