@@ -20,7 +20,6 @@ export const options: NextAuthOptions = {
       },
 
       async authorize(credentials) {
-        //Note: Production would have some logic here for retrieving user data from db then compare/verify credentials
         //Note: Hard coding a user for technical interviewer - Production would have a post request to backend API
         const user = {
           id: "001",
@@ -41,15 +40,14 @@ export const options: NextAuthOptions = {
   ],
 
   callbacks: {
-    //adding custom 'jwt-tokens'
+    //adding custom 'jwt-token'
     async jwt({ token, user }: { token: JWT; user?: User }): Promise<JWT> {
       token.customTokenProperty = "Added from JWT Callback";
-      //Note: The thought process is now (say this was production app) we could now use post requests based on the users id or name
       if (user) {
         return {
           ...token,
-          custom_id: user.id, //-token id will be updated/set as userID
-          name: user.name, //-store the username in the token because why not ..
+          custom_id: user.id,
+          name: user.name,
         };
       }
       return token;
@@ -64,7 +62,6 @@ export const options: NextAuthOptions = {
       token: JWT;
       user: User;
     }): Promise<Session> {
-      //Note: The thought process is now we can easily access the user's id and name via session (when using the useSession hook)
       return {
         ...session,
         user: {
@@ -76,14 +73,13 @@ export const options: NextAuthOptions = {
     },
 
     async redirect({ url, baseUrl }) {
-      if (url.startsWith("/"))
-        return `${baseUrl}${url}`; //-Allows relative callback URLs
-      else if (new URL(url).origin === baseUrl) return url; //-Allows callback URLs on the same origin
+      if (url.startsWith("/")) return `${baseUrl}${url}`;
+      else if (new URL(url).origin === baseUrl) return url;
       return baseUrl;
     },
   },
 
-  //Note: Setting s custom maxAge on the session & JWT tokens
+  //Note: Setting custom maxAge on the 'session' & 'JWT-tokens'
   session: {
     strategy: "jwt",
     maxAge: 5 * 60,
@@ -92,7 +88,7 @@ export const options: NextAuthOptions = {
     maxAge: 5 * 60,
   },
 
-  // Custom re-directs
+  //Note: Custom re-directs
   pages: {
     signIn: "/auth/signIn",
     signOut: "/auth/signIn",

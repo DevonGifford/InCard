@@ -1,9 +1,8 @@
-import Image, { StaticImageData } from "next/image";
 import Link from "next/link";
-
-import socialIcons from "@/public/other";
-import HomeUnauthenticated from "@/public/home/home_unauthenticated.png";
+import Image, { StaticImageData } from "next/image";
 import Button from "./components/ui/button";
+import HomeUnauthenticated from "@/public/home/home_unauthenticated.png";
+import socialIcons from "@/public/other";
 
 const socialIconsTyped: { [key: string]: StaticImageData } = socialIcons;
 

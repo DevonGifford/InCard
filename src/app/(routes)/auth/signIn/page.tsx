@@ -28,15 +28,14 @@ const SignUpSchema = z.object({
 type SignUpSchemaType = z.infer<typeof SignUpSchema>;
 
 const LoginPage = () => {
-  const [error, setError] = useState("");
-
-  // Handle callbacks - simpler to manage notifications
   const router = useRouter();
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
 
-  // Handle hiding/showing password
+  const [error, setError] = useState("");
+
   const [isShown, setIsSHown] = useState(false);
+
   const togglePassword = () => {
     setIsSHown((isShown) => !isShown);
   };
@@ -66,10 +65,10 @@ const LoginPage = () => {
         toast.success("Successfully signed in");
       } else {
         setError(
-          "⚠ Login failed. Please check your credentials and try again."
+          "⚠ Login failed. Please check your credentials and try again.",
         );
         toast.error(
-          "Login failed, please check your credentials and try again."
+          "Login failed, please check your credentials and try again.",
         );
       }
     } catch (err: any) {
@@ -105,7 +104,7 @@ const LoginPage = () => {
               placeholder=""
               className={clsx(
                 "input text-white bg-gray-900 rounded-l border-2 border-gray-400 focus:outline-none focus:border-incard-blue p-2",
-                errors.username || error ? "border-red-900" : "border-gray-400"
+                errors.username || error ? "border-red-900" : "border-gray-400",
               )}
               {...register("username")}
             />
@@ -128,7 +127,7 @@ const LoginPage = () => {
                   "input text-white bg-gray-900 rounded-l border-2 border-gray-400 focus:outline-none focus:border-incard-blue p-2",
                   errors.password || error
                     ? "border-red-900"
-                    : "border-gray-400"
+                    : "border-gray-400",
                 )}
                 {...register("password")}
               />

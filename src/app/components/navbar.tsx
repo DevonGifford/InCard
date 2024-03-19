@@ -8,9 +8,7 @@ import SideBar from "./sidebar";
 import Logo from "@/public/incard_logo.png";
 
 export default function Navbar() {
-  const { data: session } = useSession({
-    required: false,
-  });
+  const { data: session } = useSession({ required: false });
 
   async function handleSignOut() {
     try {
