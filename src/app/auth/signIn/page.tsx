@@ -10,7 +10,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "react-hot-toast";
 import { Eye, EyeOff } from "lucide-react";
 
-import AuthBackdrop from "@/src/components/AuthBackdrop"; 
+import AuthBackdrop from "@/src/components/AuthBackdrop";
 import AuthInstructions from "@/src/components/AuthInstructions";
 
 const SignUpSchema = z.object({
@@ -30,18 +30,9 @@ type SignUpSchemaType = z.infer<typeof SignUpSchema>;
 const LoginPage = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const [errorMessage, setErrorMessage] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
-
-  //FIXME: improve naming
-  const [error, setError] = useState("");
-
-  //FIXME: improve naming
-  const [isShown, setIsSHown] = useState(false);
-
-  //FIXME: improve naming
-  const togglePassword = () => {
-    setIsSHown((isShown) => !isShown);
-  };
 
   const {
     register,
@@ -54,7 +45,6 @@ const LoginPage = () => {
     shouldFocusError: true,
   });
 
-  //FIXME: long function, improve error handeling
   const onSubmit: SubmitHandler<SignUpSchemaType> = async (data) => {
     try {
       const result = await signIn("credentials", {
@@ -63,53 +53,49 @@ const LoginPage = () => {
         redirect: false,
         callbackUrl,
       });
-      if (!result?.error) {
-        const callbackLink = result?.url!;
-        router.push(callbackLink);
-        toast.success("Successfully signed in");
-      } else {
-        setError(
-          "⚠ Login failed. Please check your credentials and try again."
-        );
-        toast.error(
-          "Login failed, please check your credentials and try again."
-        );
+
+      if (result?.error) {
+        setErrorMessage("⚠ Please check your credentials and try again.");
+        return;
       }
+
+      const callbackLink = result?.url!;
+      router.push(callbackLink);
     } catch (err: any) {
-      console.error(err);
       toast.error("Something went wrong. Please try again later.");
     }
   };
 
-  //FIXME: improve semantic tags,
   return (
     <div className="flex flex-row h-screen gap-1">
       <AuthBackdrop />
 
-      <div className="absolute items-center h-[113vh] w-full sm:w-3/5 lg:max-w-screen-xl px-8 sm:px-10 py-3 bg-gray-900 flex flex-col gap-3 sm:gap-7 -translate-y-20">
+      <main className="absolute flex flex-col h-[113vh] w-full sm:w-3/5 lg:max-w-screen-xl px-4 sm:px-10 items-center  gap-4 sm:gap-8 -translate-y-20 bg-gray-900">
+        <header className="flex flex-col pb-2 pt-[calc(100px+8vw)] items-start w-full sm:px-[2rem] md:px-[4rem] max-w-lg ">
+          <h2 className="font-bold tracking-widest text-2xl sm:text-3xl py-1 mb-0 sm:mb-2">
+            Hello!
+          </h2>
+          <p className="text-zinc-300 mb-1"> Log in to your incard account.</p>
+        </header>
+
+
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="form flex flex-col pt-10 sm:px-14 text-white"
+          className="flex flex-col text-white px-[calc(4px-1vw)] md:px-[4rem] w-full max-w-lg"
         >
-          <div className="flex flex-col pb-2 pt-16 lg:pt-32 xl:pt-40">
-            <span className=" font-bold tracking-widest text-2xl sm:text-3xl py-1 mb-0 sm:mb-2 ">
-              Hello !
-            </span>
-            <span className="text-zinc-300 mb-1">
-              {" "}
-              Log in to your incard account.
-            </span>
-          </div>
-
-          {/* USERNAME INPUT */}
-          <div className="flex flex-col sm:pb-2" onClick={() => setError("")}>
+          <section
+            className="flex flex-col sm:pb-2"
+            onClick={() => setErrorMessage("")}
+          >
             <h3 className=" font-extralight pb-4">Username</h3>
             <input
               role="username-input"
               placeholder=""
               className={clsx(
-                "input text-white bg-gray-900 rounded-l border-2 border-gray-400 focus:outline-none focus:border-incard-blue p-2",
-                errors.username || error ? "border-red-900" : "border-gray-400"
+                "text-white bg-gray-900 rounded-md border-2 border-gray-400 focus:outline-none focus:border-incard-blue p-2",
+                errors.username || errorMessage
+                  ? "border-red-900"
+                  : "border-gray-400"
               )}
               {...register("username")}
             />
@@ -118,29 +104,31 @@ const LoginPage = () => {
                 {errors.username.message}
               </span>
             )}
-          </div>
+          </section>
 
-          {/* PASSWORD INPUT*/}
-          <div className="flex flex-col mt-6 pb-3" onClick={() => setError("")}>
-            <h3 className=" font-extralight pb-1">Password</h3>
+          <section
+            className="flex flex-col mt-6 pb-3"
+            onClick={() => setErrorMessage("")}
+          >
+            <h3 className="font-extralight pb-1">Password</h3>
             <div className="flex flex-col">
               <input
                 role="password-input"
-                type={isShown ? "text" : "password"}
+                type={showPassword ? "text" : "password"}
                 placeholder=""
                 className={clsx(
-                  "input text-white bg-gray-900 rounded-lg border-2 border-gray-400 focus:outline-none focus:border-incard-blue p-2",
-                  errors.password || error
+                  "text-white bg-gray-900 rounded-md border-2 border-gray-400 focus:outline-none focus:border-incard-blue p-2",
+                  errors.password || errorMessage
                     ? "border-red-900"
                     : "border-gray-400"
                 )}
                 {...register("password")}
               />
               <div
-                className="relative -translate-y-1.5 -translate-x-2 flex items-end justify-end cursor-pointer h-0"
-                onClick={togglePassword}
+                className="relative -translate-y-2 -translate-x-2 flex items-end justify-end cursor-pointer h-0"
+                onClick={() => setShowPassword((prev) => !prev)}
               >
-                {isShown ? <Eye size={28} /> : <EyeOff size={28} />}
+                {showPassword ? <Eye size={26} /> : <EyeOff size={26} />}
               </div>
             </div>
             {errors.password && (
@@ -148,21 +136,23 @@ const LoginPage = () => {
                 {errors.password.message}
               </span>
             )}
-          </div>
+          </section>
 
-          <span className="text-red-600 text-sm sm:text-base max-w-[350px]">
-            {error}
-          </span>
+          <aside className="text-red-600 text-sm sm:text-base max-w-[350px] md:max-w-2xl ">
+            {errorMessage}
+          </aside>
+
           <button
             type="submit"
-            className=" w-40 mb-5 text-base md:text-lg tracking-wider rounded-xl p-2 mt-4 md:mt-8 px-4 bg-incard-blue font-semi-bold text-black border-2 border-incard-blue"
+            className="w-40 mb-5 font-medium text-base md:text-lg tracking-wider rounded-md p-2 mt-4 md:mt-8 px-4 bg-incard-blue font-semi-bold text-black border-2 border-incard-blue"
           >
             Log in
           </button>
-
-          <AuthInstructions />
         </form>
-      </div>
+        <footer>
+          <AuthInstructions />
+        </footer>
+      </main>
     </div>
   );
 };

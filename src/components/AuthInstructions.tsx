@@ -20,26 +20,26 @@ const AuthInstructions = () => {
       </span>
 
       <div className="flex flex-col gap-2 justify-evenly">
-        <span className="text-base text-zinc-300">
+        <p className="text-base text-zinc-300">
           Dont have an account?{" "}
           <span className="text-base font-bold hover:font-heavy text-incard-blue">
             See below
           </span>
-        </span>
+        </p>
       </div>
 
       {/* COPY BUTTON */}
-      <div className="flex flex-col gap-1 sm:gap-2  max-w-[400px] bg-gray-800 rounded-xl p-5 text-xs md:text-sm lg:text-base">
-        <span className="flex flex-row gap-2 font-semibold">
+      <div className="flex flex-col gap-2 sm:gap-3 max-w-[400px] bg-gray-800 rounded-lg p-5 text-xs md:text-sm lg:text-base">
+        <span className="flex flex-row gap-2 font-semibold items-center">
           <AlertTriangle />
-          Note this is part of a FE Technical Test
+          Note this is a Technical Assessment
         </span>
         <span>
           For successful authentication, you can use the following for both the{" "}
           <strong>username & password</strong>.
         </span>
         <div
-          className="w-3/5 max-w-[900px] min-w-[130px] bg-gray-700 hover:bg-gray-600 hover:cursor-pointer border-2 border-gray-400 py-2 rounded-xl mt-2"
+          className="w-3/5 max-w-[900px] min-w-[130px] bg-gray-700 hover:bg-gray-600 hover:cursor-pointer border-2 border-gray-400 py-2 rounded-lg mt-2"
           onClick={copyText}
         >
           <div className="flex flex-row justify-between mx-4 font-semibold text-base">
