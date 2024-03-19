@@ -2,7 +2,7 @@ import Image from "next/image";
 import formBackgroundImage from "@/public/incard-images/form_background.webp";
 
 
-const FormImage = () => {
+const AuthBackground = () => {
   return (
     <>
       <div className="w-4/5 max-w-screen-xl"></div>
@@ -23,4 +23,4 @@ const FormImage = () => {
   );
 };
 
-export default FormImage;
+export default AuthBackground;

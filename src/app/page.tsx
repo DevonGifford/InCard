@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image, { StaticImageData } from "next/image";
 import Button from "../components/ui/button";
-import splashImage from "@/public/incard-images/home_horizontal_card.png";  // FIXME: Mysterious Name
+import splashImage from "@/public/incard-images/home_horizontal_card.png"; 
 import clientLogos from "@/public/client-logos";  
 
 const clientLogo: { [key: string]: StaticImageData } = clientLogos;
@@ -30,7 +30,7 @@ export default async function Home() {
           src={splashImage}
           width={900}
           height={300}
-          alt="You shall not pass"
+          alt="premium visa card"
         />
 
         <footer className="flex flex-col -translate-y-20 md:-translate-y-72 justify-center items-center text-center gap-2 md:gap-10">

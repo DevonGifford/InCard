@@ -10,9 +10,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "react-hot-toast";
 import { Eye, EyeOff } from "lucide-react";
 
-import FormImage from "@/src/components/ui/form-image";  //FIXME: standardize naming convention 
-import FormFooter from "@/src/components/ui/formfooter"; //FIXME: standardize naming convention - move out of the UI
-
+import AuthBackdrop from "@/src/components/AuthBackdrop"; 
+import AuthInstructions from "@/src/components/AuthInstructions";
 
 const SignUpSchema = z.object({
   username: z
@@ -70,10 +69,10 @@ const LoginPage = () => {
         toast.success("Successfully signed in");
       } else {
         setError(
-          "⚠ Login failed. Please check your credentials and try again.",
+          "⚠ Login failed. Please check your credentials and try again."
         );
         toast.error(
-          "Login failed, please check your credentials and try again.",
+          "Login failed, please check your credentials and try again."
         );
       }
     } catch (err: any) {
@@ -82,10 +81,10 @@ const LoginPage = () => {
     }
   };
 
-  //FIXME: improve semantic tags, 
+  //FIXME: improve semantic tags,
   return (
     <div className="flex flex-row h-screen gap-1">
-      <FormImage />
+      <AuthBackdrop />
 
       <div className="absolute items-center h-[113vh] w-full sm:w-3/5 lg:max-w-screen-xl px-8 sm:px-10 py-3 bg-gray-900 flex flex-col gap-3 sm:gap-7 -translate-y-20">
         <form
@@ -110,7 +109,7 @@ const LoginPage = () => {
               placeholder=""
               className={clsx(
                 "input text-white bg-gray-900 rounded-l border-2 border-gray-400 focus:outline-none focus:border-incard-blue p-2",
-                errors.username || error ? "border-red-900" : "border-gray-400",
+                errors.username || error ? "border-red-900" : "border-gray-400"
               )}
               {...register("username")}
             />
@@ -133,7 +132,7 @@ const LoginPage = () => {
                   "input text-white bg-gray-900 rounded-lg border-2 border-gray-400 focus:outline-none focus:border-incard-blue p-2",
                   errors.password || error
                     ? "border-red-900"
-                    : "border-gray-400",
+                    : "border-gray-400"
                 )}
                 {...register("password")}
               />
@@ -141,11 +140,7 @@ const LoginPage = () => {
                 className="relative -translate-y-1.5 -translate-x-2 flex items-end justify-end cursor-pointer h-0"
                 onClick={togglePassword}
               >
-                {isShown ? (
-                  <Eye size={28} />
-                ) : (
-                  <EyeOff size={28} />
-                )}
+                {isShown ? <Eye size={28} /> : <EyeOff size={28} />}
               </div>
             </div>
             {errors.password && (
@@ -165,7 +160,7 @@ const LoginPage = () => {
             Log in
           </button>
 
-          <FormFooter /> 
+          <AuthInstructions />
         </form>
       </div>
     </div>

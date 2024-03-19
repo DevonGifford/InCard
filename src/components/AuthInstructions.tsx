@@ -2,8 +2,7 @@ import { AlertTriangle, Copy } from "lucide-react";
 import Link from "next/link";
 import toast from "react-hot-toast";
 
-const FormFooter = () => {
-  // ✅ Handle copy username/password text
+const AuthInstructions = () => {
   function copyText() {
     navigator.clipboard
       .writeText("incard")
@@ -36,7 +35,7 @@ const FormFooter = () => {
           Note this is part of a FE Technical Test
         </span>
         <span>
-          For successfull authentication, you can use the following for both the{" "}
+          For successful authentication, you can use the following for both the{" "}
           <strong>username & password</strong>.
         </span>
         <div
@@ -53,4 +52,4 @@ const FormFooter = () => {
   );
 };
 
-export default FormFooter;
+export default AuthInstructions;
