@@ -6,6 +6,7 @@ export const options: NextAuthOptions = {
   providers: [
     CredentialProvider({
       name: "Credentials",
+      //FIXME: Remove dead code
       credentials: {
         username: {
           label: "Username: ",
@@ -20,13 +21,16 @@ export const options: NextAuthOptions = {
       },
 
       async authorize(credentials) {
-        //Note: Hard coding a user for technical interviewer - Production would have a post request to backend API
+        // Note: In this assessment, a hardcoded user is provided for demonstration purposes.
+        // In a production environment, authentication would typically involve sending a POST request to the backend API/DB to validate user credentials.
         const user = {
           id: "001",
           name: "incard",
           password: "incard",
         };
-        //Note: Production would have more extensive logic - would use bcrypt to be comparing passwords etc.
+
+        // Note: In this assessment, a basic credential comparison is performed for simplicity.
+        // In a production environment, more robust security measures, such as bcrypt for password hashing and comparison, would be employed.
         if (
           credentials?.username === user.name &&
           credentials.password === user.password
@@ -40,7 +44,7 @@ export const options: NextAuthOptions = {
   ],
 
   callbacks: {
-    //adding custom 'jwt-token'
+    //Note: Adding custom properties to JWT token
     async jwt({ token, user }: { token: JWT; user?: User }): Promise<JWT> {
       token.customTokenProperty = "Added from JWT Callback";
       if (user) {
@@ -53,7 +57,7 @@ export const options: NextAuthOptions = {
       return token;
     },
 
-    //adding custom 'session'
+    //Note: Adding custom properties to session
     async session({
       session,
       token,
@@ -72,6 +76,7 @@ export const options: NextAuthOptions = {
       };
     },
 
+    // custom redirect logic
     async redirect({ url, baseUrl }) {
       if (url.startsWith("/")) return `${baseUrl}${url}`;
       else if (new URL(url).origin === baseUrl) return url;
@@ -79,7 +84,7 @@ export const options: NextAuthOptions = {
     },
   },
 
-  //Note: Setting custom maxAge on the 'session' & 'JWT-tokens'
+  // custom maxAge for session & JWT-token
   session: {
     strategy: "jwt",
     maxAge: 5 * 60,
@@ -88,7 +93,7 @@ export const options: NextAuthOptions = {
     maxAge: 5 * 60,
   },
 
-  //Note: Custom re-directs
+  // custom redirects
   pages: {
     signIn: "/auth/signIn",
     signOut: "/auth/signIn",

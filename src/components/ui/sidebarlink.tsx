@@ -1,13 +1,14 @@
 import Link from "next/link";
 
-interface CustomLinkProps {
+// FIXME: bad smell
+interface SidebarLink {
   source: string;
   title: string;
   secure: boolean;
   client: boolean;
 }
 
-const CustomLink: React.FC<CustomLinkProps> = ({
+const SidebarLink: React.FC<SidebarLink> = ({
   source,
   title,
   secure,
@@ -16,10 +17,10 @@ const CustomLink: React.FC<CustomLinkProps> = ({
   return (
     <div>
       <Link href={source}>
-        <div className="transition ease-in-out duration-150 hover:scale-110 hover:-translate-y-1 text-white hover:text-cyan-950">
-          <span>{title}...</span>
+        <div className="transition ease-in-out duration-150 hover:scale-95 text-white hover:text-cyan-950">
+          <h2>{title}</h2>
 
-          <div className="flex flex-col md:flex-row md:gap-2 text-sm font-semibold">
+          <aside className="flex flex-col md:flex-row md:gap-3 text-xs font-semibold ml-2">
             <div className="text-green-950">
               {secure ? (
                 <span>Protected page</span>
@@ -31,11 +32,11 @@ const CustomLink: React.FC<CustomLinkProps> = ({
             <div className="text-gray-200/60">
               {client ? <span>Client Side</span> : <span>Server Side</span>}
             </div>
-          </div>
+          </aside>
         </div>
       </Link>
     </div>
   );
 };
 
-export default CustomLink;
+export default SidebarLink;

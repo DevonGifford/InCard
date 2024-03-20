@@ -8,10 +8,6 @@ import NextAuth, {
 import { JWT } from "next-auth/jwt";
 
 declare module "next-auth/jwt" {
-  /**
-   * Dev Note💻:
-   * Returned via `jwt` callback and `getToken`, when using JWT sessions
-   *  */
   interface JWT {
     accessToken?: Account.accessToken;
     customTokenProperty: string;
@@ -27,11 +23,6 @@ declare module "next-auth/jwt" {
 }
 
 declare module "next-auth" {
-  /**
-   * Dev Note💻:
-   * Returned by `useSession`, `getSession` and received as
-   * a prop on the `SessionProvider` React Context
-   */
   interface Session {
     accessToken?: Account.accessToken;
     customSessionProperty: string;
@@ -54,18 +45,3 @@ declare module "next-auth" {
     contactAddress?: { id?: string };
   }
 }
-
-/*
-Future Devon Note:
-The shape of the user object returned in th Oauth providers profile callback,
-or the second parameter of the session callback, when using a database.
-
-interface User {}
-    Usually constans information about the provider being used
-    and also extends 'TokenSet, which is different tokens returned by OAuth Providers
-
-interface Account {}
-    The OAuth profile returned from your provider
-
-interface Profile {}
-*/

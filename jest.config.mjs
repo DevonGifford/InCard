@@ -1,12 +1,12 @@
 import nextJest from "next/jest.js";
 
-//-configuration object must always be JSON-serializable.
+//FIXME: remove dead code + clean up 
+
 const createJestConfig = nextJest({
-  // Provide the path to your Next.js app to load next.config.js and .env files in your test environment
   dir: "./",
 });
 
-// 👇 Setup overlap for both the ssr & csr testing
+// 👇 Setup overlap - both ssr & csr 
 /** @type {import('jest').Config} */
 const sharedConfig = {
   setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
@@ -14,14 +14,13 @@ const sharedConfig = {
   coveragePathIgnorePatterns: ["<rootDir>/node_modules/"],
   preset: "ts-jest",
 };
-//👇 Setup for testing client side rendered components
+//👇 Setup for client side rendered components
 const clientTestConfig = {
   ...sharedConfig,
   testEnvironment: "jest-environment-jsdom",
   testMatch: ["**/__tests__/*.test.tsx", "**/__tests__/page-*"],
 };
-//👇 Setup for testing server side rendered components
-//🎯 unused - remove post final code review
+//👇 Setup for server side rendered components
 const serverTestConfig = {
   ...sharedConfig,
   testEnvironment: "jest-environment-node",
@@ -35,5 +34,4 @@ const config = {
   ],
 };
 
-//createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
 export default config;

@@ -2,8 +2,9 @@ import { render, screen } from "@testing-library/react";
 import { useSession } from "next-auth/react";
 
 import Home from "../app/page";
-import ClientPage from "../app/(routes)/dashboard/page";
-import LoginPage from "../app/(routes)/auth/signIn/page";
+import ClientPage from "../app/dashboard/page";
+import LoginPage from "../app/auth/signIn/page";
+
 import { useRouter, useSearchParams } from "next/navigation";
 
 test("Testing the test environment", () => {
@@ -25,7 +26,7 @@ test("should render the dashboard page - client side", () => {
   render(<ClientPage />);
 
   // Assert
-  expect(screen.getByText("a Client Side Rendered")).toBeInTheDocument();
+  expect(screen.getByText("Time until expiration")).toBeInTheDocument();
 });
 
 jest.mock("next/navigation", () => ({

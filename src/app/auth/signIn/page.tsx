@@ -1,17 +1,18 @@
 "use client";
 
-import clsx from "clsx";
 import * as z from "zod";
-import React, { useState } from "react";
+import clsx from "clsx";
+import { useState } from "react";
+import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { signIn } from "next-auth/react";
 import { toast } from "react-hot-toast";
 
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import FormImage from "@/src/app/components/ui/form-image";
-import FormFooter from "@/src/app/components/ui/formfooter";
+import FormImage from "@/src/components/ui/form-image";  //FIXME: standardize naming convention 
+import FormFooter from "@/src/components/ui/formfooter"; //FIXME: standardize naming convention - move out of the UI
+
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"; //FIXME: replace with lucid icon
 
 const SignUpSchema = z.object({
   username: z
@@ -32,10 +33,13 @@ const LoginPage = () => {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
 
+  //FIXME: improve naming
   const [error, setError] = useState("");
 
+  //FIXME: improve naming
   const [isShown, setIsSHown] = useState(false);
 
+  //FIXME: improve naming
   const togglePassword = () => {
     setIsSHown((isShown) => !isShown);
   };
@@ -51,6 +55,7 @@ const LoginPage = () => {
     shouldFocusError: true,
   });
 
+  //FIXME: long function, improve error handeling
   const onSubmit: SubmitHandler<SignUpSchemaType> = async (data) => {
     try {
       const result = await signIn("credentials", {
@@ -77,6 +82,7 @@ const LoginPage = () => {
     }
   };
 
+  //FIXME: improve semantic tags, 
   return (
     <div className="flex flex-row h-screen gap-1">
       <FormImage />
@@ -124,7 +130,7 @@ const LoginPage = () => {
                 type={isShown ? "text" : "password"}
                 placeholder=""
                 className={clsx(
-                  "input text-white bg-gray-900 rounded-l border-2 border-gray-400 focus:outline-none focus:border-incard-blue p-2",
+                  "input text-white bg-gray-900 rounded-lg border-2 border-gray-400 focus:outline-none focus:border-incard-blue p-2",
                   errors.password || error
                     ? "border-red-900"
                     : "border-gray-400",
@@ -132,13 +138,13 @@ const LoginPage = () => {
                 {...register("password")}
               />
               <div
-                className="relative -translate-y-1 -translate-x-2 flex items-end justify-end cursor-pointer h-0"
+                className="relative -translate-y-1.5 -translate-x-2 flex items-end justify-end cursor-pointer h-0"
                 onClick={togglePassword}
               >
                 {isShown ? (
-                  <AiOutlineEye size={30} />
+                  <AiOutlineEye size={28} />
                 ) : (
-                  <AiOutlineEyeInvisible size={30} />
+                  <AiOutlineEyeInvisible size={28} />
                 )}
               </div>
             </div>
@@ -148,17 +154,18 @@ const LoginPage = () => {
               </span>
             )}
           </div>
+
           <span className="text-red-600 text-sm sm:text-base max-w-[350px]">
             {error}
           </span>
           <button
             type="submit"
-            className=" w-40 mb-5 text-base md:text-lg tracking-wider rounded-lg p-2 mt-4 md:mt-8 px-4 bg-incard-blue font-semi-bold text-black border-2 border-incard-blue"
+            className=" w-40 mb-5 text-base md:text-lg tracking-wider rounded-xl p-2 mt-4 md:mt-8 px-4 bg-incard-blue font-semi-bold text-black border-2 border-incard-blue"
           >
             Log in
           </button>
 
-          <FormFooter />
+          <FormFooter /> 
         </form>
       </div>
     </div>

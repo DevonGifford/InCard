@@ -1,4 +1,5 @@
 <a name="readme-top"></a>
+
 <div align="center">
   <h2>Take-Home Assessment</h2>
   <h4>Frontend NextJs app handeling authentication<h4>
@@ -13,15 +14,7 @@
     <a href="https://github.com/DevonGifford/InCard/issues">Request Feature</a>
     </p>
 </div>
-<h3 align='center'>
-Tech Used in this Project:
-</h3>
-<p align='center'>
-    <img src="https://skillicons.dev/icons?i=ts,nextjs,tailwind" />
-    <img src="https://next-auth.js.org/img/logo/logo-sm.png" width=42 alt="Next-Auth">
-    <img src="https://img.stackshare.io/service/40157/default_ac6bddce398a038cb30e3dfd23eaab10c84cfc78.jpg" width=44 alt="React-Hot-Toast" >
-    <img src="https://skillicons.dev/icons?i=jest" />
-</p>
+
 
 <!-- -------------------------------------------------------------------------- -->
 
@@ -37,15 +30,14 @@ Notably, the application's UI exactly matches that of [IdeaCard](https://www.inc
 
 > [!NOTE]
 >
-> - Please disregard boilerplate ShadCN code in `components/ui`, as it does not require review.
+> **For Authentication you can use the following for both username and password:**
+>```shell
+>  incard
+>```
 > - For known issues and potential enhancements, please refer to this repos [github issues](https://github.com/DevonGifford/ClearScore/issues).
 > - Your constructive criticism and suggestions for improvements are welcome!
 
-##### Username & Password:
 
-```shell
-incard
-```
 
 <br/>
 
@@ -76,7 +68,7 @@ incard
 
 ✔ Handles errors effectively (e.g., incorrect details entered or session expiry).
 
-👨‍💻 Includes a suite of demo unit and integration tests.
+✔‍ Includes a suite of demo unit and integration tests.
 
 </br>
 
@@ -84,7 +76,7 @@ incard
 
 ✔ Supports both Server-Side Rendering (SSR) and Client-Side Rendering (CSR)
 
-✔ Implements modern form validation, with Zod and React Hook Forms 
+✔ Implements modern form validation, with Zod and React Hook Forms
 
 ✔ Maintains persistent session <em>(login status retained on page reload)</em>
 
@@ -108,22 +100,7 @@ incard
 
 <br/>
 
-
 <!-- -------------------------------------------------------------------------- -->
-
-### 🧪 Test Coverage:
-
----
-
-> [!WARNING]
->
-> ShadCN components, including those in components/ui are thoroughly tested within the library itself. Consequently, there's no need for individual testing of these components in this project.
->
-> _The below image reflects the testing status as of the latest commit._
-
-<div align=center>
-    <img src="//TODO: 🎯" alt="Demo" title="DemoImage" width="530" height="360">     
-</div>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

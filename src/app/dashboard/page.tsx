@@ -4,19 +4,21 @@ import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import { toast } from "react-hot-toast";
 import Image from "next/image";
-
 import HomeAuthenticated from "@/public/home/home_authenticated.png";
 import Button from "../../components/ui/button";
 
 type SessionExpires = string | undefined;
 
 export default function ClientPage() {
+  // FIXME: mysterious name 
   const { data: session, update } = useSession({
     required: true,
     onUnauthenticated() {
       redirect("/api/auth/signin?callbackUrl=/client");
     },
   });
+
+  // FIXME: mystery smell
   async function updateSession() {
     try {
       await update({
@@ -30,15 +32,20 @@ export default function ClientPage() {
       toast.error("This didn't work.");
     }
   }
+
+  // FIXME: long function, shotgun surgery
   function logExpiration(session: { expires: SessionExpires } | null) {
     try {
       const expirationRaw: SessionExpires = session?.expires;
       if (expirationRaw) {
         const expirationTime = new Date(expirationRaw); //- Parse expirationRaw string into Date object
         const currentTime = new Date(); //- Calculate time remaining, in milliseconds
-        const timeRemainingMs = expirationTime.getTime() - currentTime.getTime();
+        const timeRemainingMs =
+          expirationTime.getTime() - currentTime.getTime();
         const minutesRemaining = Math.floor(timeRemainingMs / (1000 * 60)); //- Format time, minutes and seconds
-        const secondsRemaining = Math.floor((timeRemainingMs % (1000 * 60)) / 1000);
+        const secondsRemaining = Math.floor(
+          (timeRemainingMs % (1000 * 60)) / 1000
+        );
         toast((t) => (
           <div className="flex">
             <span>
@@ -52,7 +59,6 @@ export default function ClientPage() {
           </div>
         ));
       } else {
-        //- Handle the case when expirationRaw is not available - should never happen
         toast.error("Session expiration time not available");
       }
     } catch (error) {
@@ -60,18 +66,9 @@ export default function ClientPage() {
     }
   }
 
+  // FIXME: Remove dead code, improve semantic tags, content cleanup
   return (
-    <section className="flex flex-col items-center justify-between p-5 md:pt-20 mx-10">
-      <h1 className="text-center text-2xl sm:text-3xl lg:text-5xl text-incard-blue">
-        <span className=" text-white">Welcome to your </span>
-        Dashboard, {session?.user?.name}
-      </h1>
-      <p className="text-sm py-3 sm:py-10 sm:text-xl text-center">
-        This is{" "}
-        <strong className="text-incard-blue">a Client Side Rendered</strong>{" "}
-        Page
-      </p>
-
+    <section className="flex flex-col items-center justify-between p-5 pt-20 md:pt-40 mx-10">
       <div className="flex flex-col md:flex-row gap-10 justify-evenly max-w-screen-lg">
         {/* LOG SESSION */}
         <div className="max-w-[400px] min-w-[275px] flex flex-col text-center gap-3 md:gap-6 xl:gap-10 translate-y-10">

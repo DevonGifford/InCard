@@ -22,7 +22,7 @@ const Button: React.FC<Props> = ({
     >
       {icon && <span className="">{icon}</span>}{" "}
       {/* Render the icon if provided */}
-      <span className="">{text}</span>
+      <span className="text-base tracking-widest font-medium">{text}</span>
     </button>
   );
 };
