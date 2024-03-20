@@ -87,10 +87,10 @@ export const options: NextAuthOptions = {
   // custom maxAge for session & JWT-token
   session: {
     strategy: "jwt",
-    maxAge: 5 * 60,
+    maxAge: 180,
   },
   jwt: {
-    maxAge: 5 * 60,
+    maxAge: 180,
   },
 
   // custom redirects

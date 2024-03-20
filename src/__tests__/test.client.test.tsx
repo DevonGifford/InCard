@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { useSession } from "next-auth/react";
 
 import Home from "../app/page";
-import ClientPage from "../app/dashboard/page";
+import DashboardPage from "../app/dashboard/page";
 import LoginPage from "../app/auth/signIn/page";
 
 import { useRouter, useSearchParams } from "next/navigation";
@@ -23,7 +23,7 @@ test("should render the dashboard page - client side", () => {
 
   useSession.mockReturnValue({});
 
-  render(<ClientPage />);
+  render(<DashboardPage />);
 
   // Assert
   expect(screen.getByText("Time until expiration")).toBeInTheDocument();
@@ -51,7 +51,7 @@ test("should render the login page", () => {
   render(<LoginPage />);
 
   // Assert that the component renders without errors
-  expect(screen.getByText("Hello !")).toBeInTheDocument();
+  expect(screen.getByText("Hello!")).toBeInTheDocument();
 });
 
 test("should render the landing page", async () => {
