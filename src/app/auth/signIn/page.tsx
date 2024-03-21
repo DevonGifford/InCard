@@ -8,11 +8,11 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "react-hot-toast";
+import { Eye, EyeOff } from "lucide-react";
 
 import FormImage from "@/src/components/ui/form-image";  //FIXME: standardize naming convention 
 import FormFooter from "@/src/components/ui/formfooter"; //FIXME: standardize naming convention - move out of the UI
 
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"; //FIXME: replace with lucid icon
 
 const SignUpSchema = z.object({
   username: z
@@ -142,9 +142,9 @@ const LoginPage = () => {
                 onClick={togglePassword}
               >
                 {isShown ? (
-                  <AiOutlineEye size={28} />
+                  <Eye size={28} />
                 ) : (
-                  <AiOutlineEyeInvisible size={28} />
+                  <EyeOff size={28} />
                 )}
               </div>
             </div>
