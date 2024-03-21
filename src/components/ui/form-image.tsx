@@ -1,5 +1,6 @@
 import Image from "next/image";
-import FormBackground from "@/public/home/form_background.webp";
+import formBackgroundImage from "@/public/incard-images/form_background.webp";
+
 
 const FormImage = () => {
   return (
@@ -8,7 +9,8 @@ const FormImage = () => {
       <div className="relative overflow-hidden items-center mb-8 sm:mb-14 w-full h-[113vh] bg-right -translate-y-20">
         <Image
           className=" overflow-hidden"
-          src={FormBackground}
+          src={formBackgroundImage}
+          
           objectFit="cover"
           layout="fill"
           alt="login-image"

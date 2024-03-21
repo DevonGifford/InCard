@@ -4,8 +4,9 @@ import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import { toast } from "react-hot-toast";
 import Image from "next/image";
-import HomeAuthenticated from "@/public/home/home_authenticated.png";
 import Button from "../../components/ui/button";
+
+import dashboardImage from "@/public/incard-images/dashboard_vertical_card.png";
 
 type SessionExpires = string | undefined;
 
@@ -89,8 +90,8 @@ export default function ClientPage() {
         </div>
         <Image
           className="hidden md:block"
-          src={HomeAuthenticated}
           height={400}
+          src={dashboardImage}
           width={150}
           alt="HomeAuthenticated"
         />

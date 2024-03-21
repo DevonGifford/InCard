@@ -1,10 +1,10 @@
 import Link from "next/link";
 import Image, { StaticImageData } from "next/image";
 import Button from "../components/ui/button";
-import HomeUnauthenticated from "@/public/home/home_unauthenticated.png";  // FIXME: Mysterious Name
-import socialIcons from "@/public/other";  // FIXME: Mysterious Name
+import splashImage from "@/public/incard-images/home_horizontal_card.png";  // FIXME: Mysterious Name
+import clientLogos from "@/public/client-logos";  
 
-const socialIconsTyped: { [key: string]: StaticImageData } = socialIcons;
+const clientLogo: { [key: string]: StaticImageData } = clientLogos;
 
 export default async function Home() {  
   return (
@@ -27,7 +27,7 @@ export default async function Home() {
 
         <Image
           className="w-full -z-10 md:-translate-y-24"
-          src={HomeUnauthenticated}
+          src={splashImage}
           width={900}
           height={300}
           alt="You shall not pass"
@@ -36,10 +36,10 @@ export default async function Home() {
         <footer className="flex flex-col -translate-y-20 md:-translate-y-72 justify-center items-center text-center gap-2 md:gap-10">
           <span>We work across all major ecom platforms</span>
           <div className="flex flex-col justify-center items-center md:flex-row gap-6 ">
-            {Object.keys(socialIcons).map((iconName: string, index: number) => (
+            {Object.keys(clientLogos).map((iconName: string, index: number) => (
               <div key={index}>
                 <Image
-                  src={socialIconsTyped[iconName]}
+                  src={clientLogo[iconName]}
                   width={100}
                   height={200}
                   alt="company logo"
