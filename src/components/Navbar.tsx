@@ -4,13 +4,11 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import toast from "react-hot-toast";
-import SideBar from "./sidebar";
+import SideBar from "./Sidebar";
 import Logo from "@/public/incard_logo.png";
 
 export default function Navbar() {
-  const { data: session } = useSession({
-    required: false,
-  });
+  const { data: session } = useSession({ required: false });
 
   async function handleSignOut() {
     try {
@@ -28,15 +26,14 @@ export default function Navbar() {
 
   return (
     <nav className="bg-transparent p-4 flex justify-between">
-      <div className="flex flex-row gap-3 z-20 scale-75 -translate-x-5 sm:scale-100 sm:-translate-x-0">
+      <div className="flex flex-row gap-4 z-20 scale-75 -translate-x-5 sm:scale-100 sm:-translate-x-0">
         <SideBar />
 
         <Link href="/">
           <Image
-            className="-translate-y-1 scale-90 hover:scale-95"
             src={Logo}
             height={1}
-            width={120}
+            width={110}
             alt="inCard Logo"
           />
         </Link>
@@ -44,14 +41,14 @@ export default function Navbar() {
 
       {session ? (
         <button
-          className=" bg-incard-blue px-6 py-1 rounded-full font-semibold text-lg text-black"
+          className=" bg-incard-blue px-6 py-1 rounded-full font-medium text-base tracking-wider text-black"
           onClick={() => handleSignOut()}
         >
           Sign Out
         </button>
       ) : (
         <button
-          className=" bg-incard-blue px-6 py-1 rounded-full font-semibold text-lg text-black"
+          className=" bg-incard-blue px-6 py-1 rounded-full font-medium text-base tracking-wider text-black"
           onClick={() => signIn()}
         >
           Sign In

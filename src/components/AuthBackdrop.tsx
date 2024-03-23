@@ -1,14 +1,16 @@
 import Image from "next/image";
-import FormBackground from "@/public/home/form_background.webp";
+import formBackgroundImage from "@/public/incard-images/form_background.webp";
 
-const FormImage = () => {
+
+const AuthBackground = () => {
   return (
     <>
       <div className="w-4/5 max-w-screen-xl"></div>
       <div className="relative overflow-hidden items-center mb-8 sm:mb-14 w-full h-[113vh] bg-right -translate-y-20">
         <Image
           className=" overflow-hidden"
-          src={FormBackground}
+          src={formBackgroundImage}
+          
           objectFit="cover"
           layout="fill"
           alt="login-image"
@@ -21,4 +23,4 @@ const FormImage = () => {
   );
 };
 
-export default FormImage;
+export default AuthBackground;
