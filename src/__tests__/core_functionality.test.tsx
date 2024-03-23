@@ -1,65 +1,78 @@
-import { render, screen } from "@testing-library/react";
-import { useSession } from "next-auth/react";
+import { screen } from "@testing-library/react";
 
-import Home from "../app/page";
-import DashboardPage from "../app/dashboard/page";
-import LoginPage from "../app/auth/signIn/page";
+import { customRenderDashboard } from "./utils/customRenders";
+import { customRenderSignIn } from "./utils/customRenders";
+import { customRenderHome } from "./utils/customRenders";
 
-import { useRouter, useSearchParams } from "next/navigation";
-
-test("Testing the test environment", () => {
-  render(<div>Hello</div>);
-  expect(screen.getByText("Hello")).toBeInTheDocument();
-});
-
-jest.mock("next-auth/react");
-
-test("should render the dashboard page - client side", () => {
-  // Assemble
-  jest.mock("next-auth/react", () => ({
-    ...jest.requireActual("next-auth/react"),
-    useSession: jest.fn(),
-  }));
-
-  useSession.mockReturnValue({});
-  render(<DashboardPage />);
-
-  // Assert
-  expect(screen.getByText("Time until expiration")).toBeInTheDocument();
-});
-
-jest.mock("next/navigation", () => ({
-  ...jest.requireActual("next/navigation"),
-  useRouter: jest.fn(),
-  useSearchParams: jest.fn(),
-}));
-
-test("should render the login page", () => {
-  //Assemble
-  const useRouterMock = useRouter as jest.Mock;
-  useRouterMock.mockReturnValue({
-    query: {},
-    push: jest.fn(),
-    replace: jest.fn(),
+describe("Home Page - Server-Side-Rendering (SSR)", () => {
+  beforeEach(async () => {
+    await customRenderHome();
   });
 
-  const useSearchParamsMock = useSearchParams as jest.Mock;
-  useSearchParamsMock.mockReturnValue({
-    get: jest.fn(),
+  test("renders expected elements on custom render", async () => {
+    const button = screen.getByRole("button", { name: "Getting Started" });
+    expect(button).toBeInTheDocument();
+    expect(screen.getByText(/Grow your online/i)).toBeInTheDocument();
+    expect(screen.queryByText(/Negative Test/i)).not.toBeInTheDocument();
   });
 
-  render(<LoginPage />);
+  test("renders premium-visa-card splash image", async () => {
+    const img = screen.getByAltText("premium visa card");
+    expect(img).toBeInTheDocument();
+  });
 
-  // Assert 
-  expect(screen.getByText("Hello!")).toBeInTheDocument();
+  test("renders all client company logo's", async () => {
+    const logoImages = screen.getAllByAltText("company logo");
+    expect(logoImages.length).toBe(7); // Ensure there are 7 logo images
+    logoImages.forEach((img) => {
+      expect(img).toBeInTheDocument();
+      expect(img).toHaveAttribute("src");
+    });
+  });
 });
 
-test("should render the landing page", async () => {
-  //Assemble
-  const ui = await Home();
-  render(ui);
+describe("Login Page - Client-Side-Rendering (CSR)", () => {
+  beforeEach(async () => {
+    customRenderSignIn();
+  });
 
-  //Assert
-  expect(screen.getByText(/Grow your online/i)).toBeInTheDocument();
+  test("renders login form with inputs and 'Log in' button", async () => {
+    expect(screen.getByRole("username-input")).toBeInTheDocument();
+    expect(screen.getByRole("password-input")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Log in" })).toBeInTheDocument();
+  });
+
+  test("renders 'Back to Home Page' link", async () => {
+    expect(
+      screen.getByRole("link", { name: "Back to Home Page" })
+    ).toBeInTheDocument();
+  });
+
+  test("renders login image and 'Don't have an account?' text", async () => {
+    expect(screen.getByAltText("login-image")).toBeInTheDocument();
+    expect(screen.getByText("Dont have an account?")).toBeInTheDocument();
+  });
 });
 
+describe("Dashboard Page - Client-Side-Rendering (CSR)", () => {
+  beforeEach(async () => {
+    customRenderDashboard();
+  });
+
+  test("should render with expected elements  dashboard page - CSR page", () => {
+    expect(screen.getByText("Time until expiration")).toBeInTheDocument();
+    expect(screen.queryByText(/Negative Test/i)).not.toBeInTheDocument();
+  });
+
+  test("renders 'Time until expiration' section with expected elements", async () => {
+    expect(screen.getByText("Time until expiration")).toBeInTheDocument();
+    expect(screen.getByText(/remaining session time/i)).toBeInTheDocument();
+    expect( screen.getByRole("button", { name: "Log Session" })).toBeInTheDocument();
+  });
+
+  test("renders 'Update session expiration' section with expected elements", async () => {
+    expect(screen.getByText("Update session expiration")).toBeInTheDocument();
+    expect(screen.getByText(/and update your session/i)).toBeInTheDocument();
+    expect( screen.getByRole("button", { name: "Update Session" })).toBeInTheDocument();
+  });
+});
