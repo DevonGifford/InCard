@@ -20,7 +20,7 @@ export default async function Home() {
           CSR. Authentication with persistent sessions and protected routes
         </span>
 
-        <Link href="/auth/signIn" className="text-sm">
+        <Link href="/dashboard" className="text-sm">
           <Button text="Getting  Started" />
         </Link>
 
