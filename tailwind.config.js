@@ -53,8 +53,13 @@ module.exports = {
           foreground: "hsl(var(--card-foreground))",
         },
       },
+      animation: {
+        "infinite-scroll": "infinite-scroll 97s linear infinite",
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+      },
       keyframes: {
-        "loop-scroll": {
+        "infinite-scroll": {
           from: { transform: "translateX(0)" },
           to: { transform: "translateX(-100%)" },
         },
@@ -67,13 +72,7 @@ module.exports = {
           to: { height: 0 },
         },
       },
-      animation: {
-        "loop-scroll": "loop-scroll 50s linear infinite",
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
-      },
     },
   },
   plugins: [require("tailwindcss-animate")],
 };
-
