@@ -1,6 +1,5 @@
 import LoginPage from "@/src/app/auth/signIn/page";
 import DashboardPage from "@/src/app/dashboard/page";
-import Home from "@/src/app/page";
 
 import { render } from "@testing-library/react";
 import { useSession } from "next-auth/react";
@@ -12,18 +11,10 @@ jest.mock("next/navigation", () => ({
   useSearchParams: jest.fn(),
 }));
 
-jest.mock("next-auth/react");
-
 jest.mock("next-auth/react", () => ({
   ...jest.requireActual("next-auth/react"),
   useSession: jest.fn(),
 }));
-
-export async function customRenderHome() {
-  const ui = await Home();
-  const { container } = render(ui);
-  return { container };
-}
 
 export function customRenderSignIn() {
   const useRouterMock = useRouter as jest.Mock;
@@ -48,5 +39,3 @@ export function customRenderDashboard() {
 
   return render(<DashboardPage />);
 }
-
-
