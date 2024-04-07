@@ -1,16 +1,30 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+"use client";
 
-import "./globals.css";
-import ToasterProvider from "../providers/ToasterProvider";
-import AuthProvider from "../providers/AuthProvider";
+import { Inter } from "next/font/google";
+import { SessionProvider } from "next-auth/react";
+import { Toaster } from "react-hot-toast";
 import Navbar from "../components/Navbar";
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
-  title: "InCard Technical Assessment",
-  description: "Authentication & Session-management",
+function AuthProvider({ children }: { children: React.ReactNode }) {
+  return <SessionProvider>{children}</SessionProvider>;
+}
+
+const ToasterProvider = () => {
+  return (
+    <Toaster
+      position="bottom-center"
+      reverseOrder={false}
+      toastOptions={{
+        style: {
+          background: "#333",
+          color: "#fff",
+        },
+      }}
+    />
+  );
 };
 
 export default function RootLayout({
