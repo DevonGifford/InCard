@@ -27,6 +27,7 @@
 <br>
 
 <!-- -------------------------------------------------------------------------- -->
+
 ### Introduction:
 
 ---
@@ -35,7 +36,7 @@ I was tasked with building a web application to manage basic authentication. To 
 
 Authentication and session management were implemented using NextAuth library, utilizing JWT tokens with a maximum age of 3 minutes, users can renew their tokens with a single click; however, if the time elapses, they will prompted to reauthenticate.
 
-Notably, the application's UI exactly matches that of [IdeaCard](https://www.incard.co/).
+Notably, the application's UI matches that of [InCard](https://www.incard.co/).
 
 > [!NOTE]
 >
@@ -44,11 +45,11 @@ Notably, the application's UI exactly matches that of [IdeaCard](https://www.inc
 > ```shell
 >  incard
 > ```
->
 
 <br/>
 
 <!-- -------------------------------------------------------------------------- -->
+
 ### 🔑 Assessment Requirements:
 
 ---

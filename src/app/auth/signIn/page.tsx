@@ -30,19 +30,18 @@ type SignUpSchemaType = z.infer<typeof SignUpSchema>;
 const LoginPage = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [errorMessage, setErrorMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
-
   const {
     register,
     handleSubmit,
+    setError,
+    clearErrors,
     formState: { errors },
   } = useForm<SignUpSchemaType>({
     resolver: zodResolver(SignUpSchema),
     mode: "onChange",
     reValidateMode: "onChange",
-    shouldFocusError: true,
   });
 
   const onSubmit: SubmitHandler<SignUpSchemaType> = async (data) => {
@@ -55,7 +54,9 @@ const LoginPage = () => {
       });
 
       if (result?.error) {
-        setErrorMessage("⚠ Please check your credentials and try again.");
+        setError("root", {
+          message: "⚠ Please check your credentials and try again.",
+        });
         return;
       }
 
@@ -78,26 +79,21 @@ const LoginPage = () => {
           <p className="text-zinc-300 mb-1"> Log in to your incard account.</p>
         </header>
 
-
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="flex flex-col text-white px-[calc(4px-1vw)] md:px-[4rem] w-full max-w-lg"
         >
-          <section
-            className="flex flex-col sm:pb-2"
-            onClick={() => setErrorMessage("")}
-          >
+          <section className="flex flex-col sm:pb-2">
             <h3 className=" font-extralight pb-4">Username</h3>
             <input
               role="username-input"
               placeholder=""
               className={clsx(
                 "text-white bg-gray-900 rounded-md border-2 border-gray-400 focus:outline-none focus:border-incard-blue p-2",
-                errors.username || errorMessage
-                  ? "border-red-900"
-                  : "border-gray-400"
+                errors.username ? "border-red-900" : "border-gray-400",
               )}
               {...register("username")}
+              onFocus={() => clearErrors("root")}
             />
             {errors.username && (
               <span className="absolute translate-y-20 sm:translate-y-18 text-red-700 text-sm pt-2">
@@ -106,10 +102,7 @@ const LoginPage = () => {
             )}
           </section>
 
-          <section
-            className="flex flex-col mt-6 pb-3"
-            onClick={() => setErrorMessage("")}
-          >
+          <section className="flex flex-col mt-6 pb-3">
             <h3 className="font-extralight pb-1">Password</h3>
             <div className="flex flex-col">
               <input
@@ -118,11 +111,10 @@ const LoginPage = () => {
                 placeholder=""
                 className={clsx(
                   "text-white bg-gray-900 rounded-md border-2 border-gray-400 focus:outline-none focus:border-incard-blue p-2",
-                  errors.password || errorMessage
-                    ? "border-red-900"
-                    : "border-gray-400"
+                  errors.password ? "border-red-900" : "border-gray-400",
                 )}
                 {...register("password")}
+                onFocus={() => clearErrors("root")}
               />
               <div
                 className="relative -translate-y-2 -translate-x-2 flex items-end justify-end cursor-pointer h-0"
@@ -138,8 +130,8 @@ const LoginPage = () => {
             )}
           </section>
 
-          <aside className="text-red-600 text-sm sm:text-base max-w-[350px] md:max-w-2xl ">
-            {errorMessage}
+          <aside className="text-red-600 text-sm sm:text-base max-w-[350px] md:max-w-2xl">
+            {errors.root?.message}
           </aside>
 
           <button

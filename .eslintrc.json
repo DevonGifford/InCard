@@ -4,7 +4,5 @@
     "plugin:testing-library/react",
     "plugin:jest-dom/recommended"
   ],
-  "rules": {
-    "testing-library/no-render-in-lifecycle": "off"
-  }
+  "rules": {}
 }
