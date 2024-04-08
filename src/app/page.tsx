@@ -39,8 +39,8 @@ export default async function Home() {
               >
                 <Image
                   src={clientLogo[iconName]}
-                  width={100}
-                  height={100}
+                  width={150}
+                  height={150}
                   alt="company logo"
                   className="max-w-none"
                 />
@@ -60,8 +60,8 @@ export default async function Home() {
               >
                 <Image
                   src={clientLogo[iconName]}
-                  width={200}
-                  height={200}
+                  width={150}
+                  height={150}
                   alt="company logo"
                   className="max-w-none"
                 />
